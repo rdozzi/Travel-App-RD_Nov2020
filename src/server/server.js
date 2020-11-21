@@ -46,5 +46,40 @@ const restCountriesRoot = 'https://restcountries.eu/rest/v2/name/'; //Add partia
 // Corona-API API
 const covidRoot = 'https://corona-api.com/countries/'; // Add two digit ISO country code
 
+app.get('/', function (req, res) {
+    res.sendFile('dist/index.html')
+})
 
+app.post('/createTrip', (req, res) => {
+    let newData = req.body;
+    let newEntry = {
+      location: newData.Location,
+    //   startDate: newData.Start,
+    //   endDate: newData.End,
+    //   duration: newData.Duration
+    }
+  
+    planData = newEntry;
+  
+    console.log(planData);
+    res.send('ok');
+})
 
+app.get('/getGeographics', (req, res) => {
+    console.log('GET georaphics')
+    const url = `${geoNamesRoot}${planData.location}${geoNamesRowsFuzzyAndUsername}`;
+    console.log(url);
+      fetch(url)
+        .then(res => res.json())
+          .then(response =>{
+            console.log('Data From GeoNames[0]')
+            console.log(response.postalCodes[0]);
+            planData.Long = response.postalCodes[0].lng;
+            planData.Lat = response.postalCodes[0].lat;
+  
+            res.send(true);
+      })
+      .catch(error => {
+        res.send(JSON.stringify({error: error}));
+      })
+})
