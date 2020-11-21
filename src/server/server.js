@@ -37,7 +37,7 @@ const weatherApiKey = `&key=${process.env.WEATHERBIT_API_KEY}`;
 const weatherParams = '&lang=en&units=I&days=7'; //Units in Fahrenheit
 
 // Pixabay API
-const pixabayRoot = `https://pixabay.com/api/?key=${PIXABAY_KEY}&q=`; //Add city name with spaces as '+' 
+const pixabayRoot = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=`; //Add city name with spaces as '+' 
 const pixabayImageType = 'image_type=photo';
 
 // Rest Countries API
