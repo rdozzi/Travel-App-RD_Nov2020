@@ -1,0 +1,11 @@
+{
+  "name": "travel-app-rd_nov2020",
+  "version": "1.0.0",
+  "description": "Udacity Capstone Project - Use APIs to build a travel app for clients",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raphael Dozzi",
+  "license": "MIT"
+}
