@@ -68,23 +68,6 @@ const getGeo = async(url) => {
         }
 }
 
-const getTripData = async(url) => {
-  const res = await fetch(url, {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-      }
-    });
-      try{
-        const data = await res.json();
-        return data;
-
-      }catch{
-        ResultError(`UpdateData: ${res.statusText}`);
-      }
-}
-
 const getWeather = async (url) => {
   const res = await fetch(url ,{
       method: 'GET',
