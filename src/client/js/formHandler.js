@@ -32,6 +32,10 @@ async function handleSubmit(event) {
 
       const imgData = await getImage(`http://localhost:5000/getImage`);
       UpdateImageResult(imgData);
+
+      const countryData = await getCountry(`http://localhost:5000/getCountries`)
+      // UpdateCountryResult(countryData);
+
   }else{
     ResultError('Please Enter a valid duration <br/> Must start today or in the future and end moving forward');
   }
@@ -102,6 +106,23 @@ const getImage = async (url) =>{
     }
 }
 
+const getCountry = async (url) =>{
+  const res = await fetch(url , {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    });
+    try{
+      const data = await res.json();
+      console.log(`Country Data: ${data}`);
+      return data;
+    }catch{
+      ResultError(`Country: ${res.statusText}`);
+    }
+}
+
 function ResultError(msg){
   if(msg !== 'OK')
   {
@@ -164,6 +185,19 @@ function UpdateImageResult(imageData){
   resultID.append(resultFragment);
 
 }
+
+// function UpdateCountryResult(countryData){
+//   let resultFragment = document.createDocumentFragment();
+
+//   let resultCountry = document.createElement('p');
+
+
+//   resultCountry.classList.add('result-country');
+//   result_Image.src = imageData.source;
+
+//   const countryHTML = `Temperature: (HIGH) ${weatherData.MAX_temperature}, (LOW) ${weatherData.MIN_temperature} <br/> Description: ${weatherData.weather}`;
+
+// }
 
 export { handleSubmit }
 

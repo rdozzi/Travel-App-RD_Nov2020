@@ -42,7 +42,7 @@ const pixabayRoot = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=`
 const pixabayImageType = '&image_type=photo';
 
 // Rest Countries API
-const restCountriesRoot = 'https://restcountries.eu/rest/v2/name/'; //Add partial country name
+const restCountriesRoot = 'https://restcountries.eu/rest/v2/alpha/'; //Add partial country name
 
 // Corona-API API
 const covidRoot = 'https://corona-api.com/countries/'; // Add two digit ISO country code
@@ -122,6 +122,22 @@ app.get('/getImage', (req, res) => {
           console.log(`Image result: ${result}`)
           planData.imgSource = result;
           res.send({source : result});
+
+    })
+    .catch(error => {
+      res.send(JSON.stringify({error: "An error has occured"}));
+    })
+})
+
+app.get('/getCountries', (req, res) => {
+  console.log('GET Countries')
+  const url = `${restCountriesRoot}${planData.code}`;
+  console.log(url);
+    fetch(url)
+      .then(response => response.json())
+        .then(response =>{
+
+          console.log(response)
 
     })
     .catch(error => {
