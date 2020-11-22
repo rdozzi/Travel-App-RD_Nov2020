@@ -1,4 +1,3 @@
-let Data = {};
 const resultID = document.getElementById('result-data');
 
 async function handleSubmit(event) {
@@ -24,7 +23,7 @@ async function handleSubmit(event) {
         Duration: daysInTravel 
       });
 
-    //   UpdateDate(startDate, endDate, daysInTravel, location);
+      UpdateDate(startDate, endDate, daysInTravel, location);
 
       await getGeo(`http://localhost:5000/getGeographics`);
     

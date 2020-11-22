@@ -21,14 +21,15 @@ app.use(express.static('dist'));
 // Server instance and respective callback function
 const port = 5000;
 const server = app.listen(port, () => {
+    const ServerStart = new Date();
     console.log('Server Running');
     console.log(`Running on localhost: ${port}`);
 });
 
 // API Access Variables
 // Geonames API
-const geoNamesRoot = 'http://api.geonames.org/searchJSON?placename='; // http://api.geonames.org/searchJSON?q= q=london&...
-const geoNamesRowsFuzzyAndUsername = `&maxRows=1&fuzzy=0.6&username=${process.env.GEONAMES_USERNAME}`;
+const geoNamesRoot = 'http://api.geonames.org/searchJSON?q='; // http://api.geonames.org/searchJSON?q= q=london&...
+const geoNamesRowsFuzzyAndUsername = `&maxRows=1&username=${process.env.GEONAMES_USERNAME}`; //&fuzzy=0.6
 
 // Weatherbit API
 const weatherbitRootForecast = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // Add &lat= & &lon=
@@ -38,7 +39,7 @@ const weatherParams = '&lang=en&units=I&days=7'; //Units in Fahrenheit
 
 // Pixabay API
 const pixabayRoot = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=`; //Add city name with spaces as '+' 
-const pixabayImageType = 'image_type=photo';
+const pixabayImageType = '&image_type=photo';
 
 // Rest Countries API
 const restCountriesRoot = 'https://restcountries.eu/rest/v2/name/'; //Add partial country name
@@ -70,15 +71,16 @@ app.post('/createTrip', (req, res) => {
 
 app.get('/getGeographics', (req, res) => {
   console.log('GET georaphics')
-  const url = `${geoNamesRoot$}${planData.location}${geoNamesRowsFuzzyAndUsername}`;
+  const url = `${geoNamesRoot}${planData.location}${geoNamesRowsFuzzyAndUsername}`;
   console.log(url);
     fetch(url)
       .then(res => res.json())
         .then(response =>{
           console.log('Data From GeoNames[0]')
-          console.log(response.postalCodes[0]);
-          planData.Long = response.postalCodes[0].lng;
-          planData.Lat = response.postalCodes[0].lat;
+          console.log(response);
+          planData['Long'] = response.geonames[0].lng;
+          planData['Lat'] = response.geonames[0].lat;
+          planData['code'] = response.geonames[0].countryCode;
 
           res.send(true);
     })
@@ -89,7 +91,7 @@ app.get('/getGeographics', (req, res) => {
 
 app.get('/getWeather', (req, res) => {
   console.log('GET weather');
-  const url = `${weatherbitRootForecast}?lat=${planData.Lat}&lon=${planData.Long}${weatherApiKey}`;
+  const url = `${weatherbitRootForecast}lat=${planData.Lat}&lon=${planData.Long}${weatherApiKey}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
