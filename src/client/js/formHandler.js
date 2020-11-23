@@ -36,6 +36,8 @@ async function handleSubmit(event) {
       const countryData = await getCountry(`http://localhost:5000/getCountries`)
       // UpdateCountryResult(countryData);
 
+      const travelAdviceData = await getTravelAdvice(`http://localhost:5000/getTravelAdvice`)
+
   }else{
     ResultError('Please Enter a valid duration <br/> Must start today or in the future and end moving forward');
   }
@@ -123,6 +125,23 @@ const getCountry = async (url) =>{
     }
 }
 
+const getTravelAdvice = async (url) =>{
+  const res = await fetch(url , {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    });
+    try{
+      const data = await res.json();
+      console.log(`Travel Data: ${data}`);
+      return data;
+    }catch{
+      ResultError(`Country: ${res.statusText}`);
+    }
+}
+
 function ResultError(msg){
   if(msg !== 'OK')
   {
@@ -141,7 +160,7 @@ function UpdateWeatherResult(weatherData){
 
   result_Weather.classList.add('result-weather');
 
-  const weatherHTML = `Temperature: (HIGH) ${weatherData.MAX_temperature}, (LOW) ${weatherData.MIN_temperature} <br/> Description: ${weatherData.weather}`;
+  const weatherHTML = `Temperature: (HIGH) ${weatherData.MAX_temperature}, (LOW) ${weatherData.MIN_temperature} <br/> Description: ${weatherData.weather} <br/> ${weatherData.weatherIcon}`;
 
   result_Weather.innerHTML = weatherHTML;
 
