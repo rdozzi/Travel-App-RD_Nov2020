@@ -23,10 +23,12 @@ async function handleSubmit(event) {
         Duration: daysInTravel 
       });
 
-      UpdateDate(startDate, endDate, daysInTravel, location);
+      UpdateDate(startDate, endDate, daysInTravel);
 
-      await getGeo(`http://localhost:5000/getGeographics`);
-      
+      const geonamesData = await getGeo(`http://localhost:5000/getGeonames`);
+      console.log(geonamesData);
+      UpdateGeonamesResults(geonamesData);
+
       const weatherData = await getWeather(`http://localhost:5000/getWeather`);  
       UpdateWeatherResult(weatherData);
 
@@ -66,7 +68,7 @@ const getGeo = async(url) => {
       });
         try{
           const data = await res.json();
-          return;
+          return data;
   
         }catch{
           ResultError(`GEO: ${res.statusText}`);
@@ -153,6 +155,42 @@ function ResultError(msg){
   }
 }
 
+function UpdateDate(begin, end, duration){
+  let resultFragment = document.createDocumentFragment();
+
+  let result_Header = document.createElement('h2');
+  let result_Date = document.createElement('p');
+
+  result_Header.classList.add('result-header');
+  result_Date.classList.add('result-date');
+
+  const dateHTML = `Start: ${begin} <br/> End: ${end} <br/> Travel time: ${duration}`;
+  result_Date.innerHTML = dateHTML;
+
+  resultFragment.append(result_Header);
+  resultFragment.lastChild.append(result_Date);
+
+  resultID.append(resultFragment);
+}
+
+function UpdateGeonamesResults(geonamesData){
+  let resultFragment = document.createDocumentFragment();
+
+  let result_Geonames = document.createElement('p');
+
+  result_Geonames.classList.add('result-Geonames');
+
+  let properName = toProper(geonamesData.location);
+
+  const geonamesHTML = `${properName}, ${geonamesData.adminName} ${geonamesData.countryName}`;
+
+  result_Geonames.innerHTML = geonamesHTML;
+
+  resultFragment.append(result_Geonames);
+
+  resultID.append(resultFragment);
+}
+
 function UpdateWeatherResult(weatherData){
   let resultFragment = document.createDocumentFragment();
 
@@ -170,26 +208,6 @@ function UpdateWeatherResult(weatherData){
   result_Weather.innerHTML = weatherHTML;
 
   resultFragment.append(result_Weather);
-
-  resultID.append(resultFragment);
-}
-
-function UpdateDate(begin, end, duration, location){
-  let resultFragment = document.createDocumentFragment();
-
-  let result_Header = document.createElement('h2');
-  let result_Date = document.createElement('p');
-
-  result_Header.classList.add('result-header');
-  result_Date.classList.add('result-date');
-
-  result_Header.innerHTML = location;
-
-  const dateHTML = `Start: ${begin} <br/> End: ${end} <br/> Travel time: ${duration}`;
-  result_Date.innerHTML = dateHTML;
-
-  resultFragment.append(result_Header);
-  resultFragment.lastChild.append(result_Date);
 
   resultID.append(resultFragment);
 }
@@ -222,6 +240,11 @@ function UpdateImageResult(imageData){
 //   const countryHTML = `Temperature: (HIGH) ${weatherData.MAX_temperature}, (LOW) ${weatherData.MIN_temperature} <br/> Description: ${weatherData.weather}`;
 
 // }
+
+function toProper(lowercaseWord){
+  let wordString = lowercaseWord.charAt(0).toUpperCase() + lowercaseWord.slice(1);
+  return wordString;
+}
 
 export { handleSubmit }
 

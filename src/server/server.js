@@ -68,8 +68,8 @@ app.post('/createTrip', (req, res) => {
 })
 
 
-app.get('/getGeographics', (req, res) => {
-  console.log('GET georaphics')
+app.get('/getGeonames', (req, res) => {
+  console.log('GET geonamesData')
   const url = `${geoNamesRoot}${planData.location}${geoNamesRowsFuzzyAndUsername}`;
   console.log(url);
     fetch(url)
@@ -82,7 +82,8 @@ app.get('/getGeographics', (req, res) => {
           planData['adminName'] = response.geonames[0].adminName1;
           planData['countryName'] = response.geonames[0].countryName;
           planData['code'] = response.geonames[0].countryCode;
-          res.send({adminName: planData.adminName});
+          console.log(planData);
+          res.send(planData);
     })
     .catch(error => {
       res.send(JSON.stringify({error: error}));
