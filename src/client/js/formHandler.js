@@ -229,11 +229,9 @@ function UpdateImageResult(imageData){
   let result_Image = new Image();
 
   result_Image.classList.add('result-image');
-  result_Image.src = imageData.source;
-
+  result_Image.src = imageData.source1;
 
   resultFragment.append(result_Image);
-
 
   resultID.append(resultFragment);
 

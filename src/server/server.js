@@ -28,20 +28,20 @@ const server = app.listen(port, () => {
 
 // API Access Variables
 // Geonames API
-const geoNamesRoot = 'http://api.geonames.org/searchJSON?q='; // http://api.geonames.org/searchJSON?q= q=london&...
-const geoNamesRowsFuzzyAndUsername = `&maxRows=1&username=${process.env.GEONAMES_USERNAME}`; //&fuzzy=0.6
+const geoNamesRoot = 'http://api.geonames.org/searchJSON?q='; // http://api.geonames.org/searchJSON?q= q=london&... Phrase cities require +
+const geoNamesRowsFuzzyAndUsername = `&maxRows=1&fuzzy=0.6&username=${process.env.GEONAMES_USERNAME}`; //&fuzzy=0.6
 
 // Weatherbit API
 const weatherbitRootForecast = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // Add &lat= & &lon=
 const weatherApiKey = `&key=${process.env.WEATHERBIT_API_KEY}`;
-const weatherParams = '&lang=en&units=I&days=1'; //Units in Fahrenheit
+const weatherParams = '&lang=en&units=I&days=1'; // Units in Fahrenheit
 
 // Rest Countries API
 const restCountriesRoot = 'https://restcountries.eu/rest/v2/alpha/'; //Add partial country name
 
 // Pixabay API
 const pixabayRoot = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=`; //Add city name with spaces as '+' 
-const pixabayImageType = '&image_type=photo';
+const pixabayParams = '&image_type=photo&order=popular';
 
 // Corona-API API
 const travelAdviceRoot = 'https://www.travel-advisory.info/api?countrycode='; // Add two digit ISO country code
@@ -79,6 +79,7 @@ app.get('/getGeonames', (req, res) => {
           console.log(response);
           planData['long'] = response.geonames[0].lng;
           planData['lat'] = response.geonames[0].lat;
+          planData['name'] =response.geonames[0].toponymName;
           planData['adminName'] = response.geonames[0].adminName1;
           planData['countryName'] = response.geonames[0].countryName;
           planData['code'] = response.geonames[0].countryCode;
@@ -151,16 +152,18 @@ app.get('/getCountries', (req, res) => {
 
 app.get('/getImage', (req, res) => {
   console.log('GET Image')
-  const url = `${pixabayRoot}${planData.location}${pixabayImageType}`;
+  const url = `${pixabayRoot}${planData.name}+${planData.adminName}+${planData.countryName}${pixabayParams}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
         .then(response =>{
 
-          const result = response.hits[0].webformatURL;
-          console.log(`Image result: ${result}`)
+          const result1 = response.hits[0].webformatURL;
+          const result2 = response.hits[1].webformatURL;
+          const result3 = response.hits[2].webformatURL;
+          console.log(`Image result: ${result1} <br/>${result2} <br/>${result3}`)
           planData.imgSource = result;
-          res.send({source : result});
+          res.send({source1 : result1, source2: result2, source3: result3});
 
     })
     .catch(error => {
