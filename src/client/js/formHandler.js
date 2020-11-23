@@ -32,11 +32,11 @@ async function handleSubmit(event) {
       const weatherData = await getWeather(`http://localhost:5000/getWeather`);  
       UpdateWeatherResult(weatherData);
 
+      const countryData = await getCountry(`http://localhost:5000/getCountries`);
+      UpdateCountryResult(countryData);
+
       const imgData = await getImage(`http://localhost:5000/getImage`);
       UpdateImageResult(imgData);
-
-      const countryData = await getCountry(`http://localhost:5000/getCountries`)
-      // UpdateCountryResult(countryData);
 
       const travelAdviceData = await getTravelAdvice(`http://localhost:5000/getTravelAdvice`)
 
@@ -93,23 +93,6 @@ const getWeather = async (url) => {
   }
 }
 
-const getImage = async (url) =>{
-  const res = await fetch(url , {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        }
-    });
-    try{
-      const data = await res.json();
-      console.log(`Image Data: ${data}`);
-      return data;
-    }catch{
-      ResultError(`IMAGE: ${res.statusText}`);
-    }
-}
-
 const getCountry = async (url) =>{
   const res = await fetch(url , {
         method: 'GET',
@@ -124,6 +107,23 @@ const getCountry = async (url) =>{
       return data;
     }catch{
       ResultError(`Country: ${res.statusText}`);
+    }
+}
+
+const getImage = async (url) =>{
+  const res = await fetch(url , {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    });
+    try{
+      const data = await res.json();
+      console.log(`Image Data: ${data}`);
+      return data;
+    }catch{
+      ResultError(`IMAGE: ${res.statusText}`);
     }
 }
 
@@ -212,6 +212,17 @@ function UpdateWeatherResult(weatherData){
   resultID.append(resultFragment);
 }
 
+function UpdateCountryResult(countryData){
+  let resultFragment = document.createDocumentFragment();
+
+  let result_Country = document.createElement('p');
+
+  result_Country.classList.add('result-country');
+  
+  const countryHTML = ``;
+
+}
+
 function UpdateImageResult(imageData){
   let resultFragment = document.createDocumentFragment();
 
@@ -227,19 +238,6 @@ function UpdateImageResult(imageData){
   resultID.append(resultFragment);
 
 }
-
-// function UpdateCountryResult(countryData){
-//   let resultFragment = document.createDocumentFragment();
-
-//   let resultCountry = document.createElement('p');
-
-
-//   resultCountry.classList.add('result-country');
-//   result_Image.src = imageData.source;
-
-//   const countryHTML = `Temperature: (HIGH) ${weatherData.MAX_temperature}, (LOW) ${weatherData.MIN_temperature} <br/> Description: ${weatherData.weather}`;
-
-// }
 
 function toProper(lowercaseWord){
   let wordString = lowercaseWord.charAt(0).toUpperCase() + lowercaseWord.slice(1);

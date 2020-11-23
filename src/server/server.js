@@ -36,12 +36,12 @@ const weatherbitRootForecast = 'https://api.weatherbit.io/v2.0/forecast/daily?';
 const weatherApiKey = `&key=${process.env.WEATHERBIT_API_KEY}`;
 const weatherParams = '&lang=en&units=I&days=1'; //Units in Fahrenheit
 
+// Rest Countries API
+const restCountriesRoot = 'https://restcountries.eu/rest/v2/alpha/'; //Add partial country name
+
 // Pixabay API
 const pixabayRoot = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=`; //Add city name with spaces as '+' 
 const pixabayImageType = '&image_type=photo';
-
-// Rest Countries API
-const restCountriesRoot = 'https://restcountries.eu/rest/v2/alpha/'; //Add partial country name
 
 // Corona-API API
 const travelAdviceRoot = 'https://www.travel-advisory.info/api?countrycode='; // Add two digit ISO country code
@@ -116,6 +116,39 @@ app.get('/getWeather', (req, res) => {
     })
 })
 
+app.get('/getCountries', (req, res) => {
+  console.log('GET Countries')
+  const url = `${restCountriesRoot}${planData.code}`;
+  console.log(url);
+    fetch(url)
+      .then(response => response.json())
+        .then(response =>{
+          console.log(response)
+          planData['capital'] = response.capital;
+          planData['demonym'] = response.demonym;
+          planData['currencyInfo'] = {code: response.currencies[0].code, 
+            name: response.currencies[0].name, 
+            symbol: response.currencies[0].symbol}
+          planData['flag'] = response.flag
+          
+          if(response.languages.length > 1){
+            langArray = [];
+            for (let lang of response.languages) {
+              langArray.push(lang.name)
+            }
+            planData['languages'] = langArray
+          }else {
+            planData['languages'] = response.languages[0].name
+          }
+
+          console.log(planData);
+          res.send(planData);
+    })
+    .catch(error => {
+      res.send(JSON.stringify({error: "An error has occured"}));
+    })
+})
+
 app.get('/getImage', (req, res) => {
   console.log('GET Image')
   const url = `${pixabayRoot}${planData.location}${pixabayImageType}`;
@@ -128,24 +161,6 @@ app.get('/getImage', (req, res) => {
           console.log(`Image result: ${result}`)
           planData.imgSource = result;
           res.send({source : result});
-
-    })
-    .catch(error => {
-      res.send(JSON.stringify({error: "An error has occured"}));
-    })
-})
-
-app.get('/getCountries', (req, res) => {
-  console.log('GET Countries')
-  const url = `${restCountriesRoot}${planData.code}`;
-  console.log(url);
-    fetch(url)
-      .then(response => response.json())
-        .then(response =>{
-
-          console.log(response)
-
-          res.send();
 
     })
     .catch(error => {
