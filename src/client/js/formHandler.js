@@ -160,7 +160,12 @@ function UpdateWeatherResult(weatherData){
 
   result_Weather.classList.add('result-weather');
 
-  const weatherHTML = `Temperature: (HIGH) ${weatherData.MAX_temperature}, (LOW) ${weatherData.MIN_temperature} <br/> Description: ${weatherData.weather} <br/> ${weatherData.weatherIcon}`;
+  const weatherHTML = `Temperature: (HIGH) ${weatherData.MAX_temperature}, 
+  (LOW) ${weatherData.MIN_temperature} 
+  <br/> ${weatherData.relativeHumidity}
+  <br/> ${weatherData.precipitation}
+  <br/> Description: ${weatherData.weather} 
+  <br/> ${weatherData.weatherIcon}`;
 
   result_Weather.innerHTML = weatherHTML;
 

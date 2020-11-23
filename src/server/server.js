@@ -33,9 +33,9 @@ const geoNamesRowsFuzzyAndUsername = `&maxRows=1&username=${process.env.GEONAMES
 
 // Weatherbit API
 const weatherbitRootForecast = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // Add &lat= & &lon=
-const weatherbitRootHistory = 'https://api.weatherbit.io/v2.0/history/daily?'; // Add &lat= & &lon=
+// const weatherbitRootHistory = 'https://api.weatherbit.io/v2.0/history/daily?'; // Add &lat= & &lon=
 const weatherApiKey = `&key=${process.env.WEATHERBIT_API_KEY}`;
-const weatherParams = '&lang=en&units=I&days=7'; //Units in Fahrenheit
+const weatherParams = '&lang=en&units=I&days=1'; //Units in Fahrenheit
 
 // Pixabay API
 const pixabayRoot = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=`; //Add city name with spaces as '+' 
@@ -81,7 +81,6 @@ app.get('/getGeographics', (req, res) => {
           planData['long'] = response.geonames[0].lng;
           planData['lat'] = response.geonames[0].lat;
           planData['code'] = response.geonames[0].countryCode;
-
           res.send(true);
     })
     .catch(error => {
@@ -91,21 +90,24 @@ app.get('/getGeographics', (req, res) => {
 
 app.get('/getWeather', (req, res) => {
   console.log('GET weather');
-  const url = `${weatherbitRootForecast}lat=${planData.lat}&lon=${planData.long}${weatherApiKey}`;
+  const url = `${weatherbitRootForecast}lat=${planData.lat}&lon=${planData.long}${weatherApiKey}${weatherParams}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
         .then(response =>{
-          console.log(response)
-          const data = response.data[planData.duration]
+          // console.log(response)
+          const data = response.data[0]
           console.log(data)
 
           planData.maxTemp = data.max_temp;
           planData.minTemp = data.min_temp;
+          planData.humidity = data.rh;
+          planData.precipProb = data.pop; // Probably of Precipitation (%)
           planData.weatherDesc = data.weather.description
           planData.weatherIcon = data.weather.icon
 
-          res.send({MAX_temperature : planData.maxTemp, MIN_temperature : planData.minTemp, weather : planData.weatherDesc, weatherIcon: data.weather.icon});
+          res.send({MAX_temperature : planData.maxTemp, MIN_temperature : planData.minTemp, relativeHumidity: planData.humidity,  precipitation: planData.precipProb, 
+            weather : planData.weatherDesc, weatherIcon: data.weather.icon});
     })
     .catch(error => {
       res.send(JSON.stringify({error: "An error occured"}));
