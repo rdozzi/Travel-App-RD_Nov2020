@@ -33,7 +33,6 @@ const geoNamesRowsFuzzyAndUsername = `&maxRows=1&username=${process.env.GEONAMES
 
 // Weatherbit API
 const weatherbitRootForecast = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // Add &lat= & &lon=
-// const weatherbitRootHistory = 'https://api.weatherbit.io/v2.0/history/daily?'; // Add &lat= & &lon=
 const weatherApiKey = `&key=${process.env.WEATHERBIT_API_KEY}`;
 const weatherParams = '&lang=en&units=I&days=1'; //Units in Fahrenheit
 
@@ -62,12 +61,12 @@ app.post('/createTrip', (req, res) => {
       endDate: newData.End,
       duration: newData.Duration
     }
-  
+    
     planData = newEntry;
-  
-    console.log(planData);
+
     res.send('ok');
 })
+
 
 app.get('/getGeographics', (req, res) => {
   console.log('GET georaphics')
@@ -80,8 +79,10 @@ app.get('/getGeographics', (req, res) => {
           console.log(response);
           planData['long'] = response.geonames[0].lng;
           planData['lat'] = response.geonames[0].lat;
+          planData['adminName'] = response.geonames[0].adminName1;
+          planData['countryName'] = response.geonames[0].countryName;
           planData['code'] = response.geonames[0].countryCode;
-          res.send(true);
+          res.send({adminName: planData.adminName});
     })
     .catch(error => {
       res.send(JSON.stringify({error: error}));

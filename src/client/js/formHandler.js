@@ -26,7 +26,7 @@ async function handleSubmit(event) {
       UpdateDate(startDate, endDate, daysInTravel, location);
 
       await getGeo(`http://localhost:5000/getGeographics`);
-    
+      
       const weatherData = await getWeather(`http://localhost:5000/getWeather`);  
       UpdateWeatherResult(weatherData);
 
