@@ -45,7 +45,7 @@ const pixabayImageType = '&image_type=photo';
 const restCountriesRoot = 'https://restcountries.eu/rest/v2/alpha/'; //Add partial country name
 
 // Corona-API API
-const covidRoot = 'https://corona-api.com/countries/'; // Add two digit ISO country code
+const travelAdviceRoot = 'https://www.travel-advisory.info/api?countrycode='; // Add two digit ISO country code
 
 // Data Storage Object
 let planData = {};
@@ -78,8 +78,8 @@ app.get('/getGeographics', (req, res) => {
         .then(response =>{
           console.log('Data From GeoNames[0]')
           console.log(response);
-          planData['Long'] = response.geonames[0].lng;
-          planData['Lat'] = response.geonames[0].lat;
+          planData['long'] = response.geonames[0].lng;
+          planData['lat'] = response.geonames[0].lat;
           planData['code'] = response.geonames[0].countryCode;
 
           res.send(true);
@@ -91,19 +91,21 @@ app.get('/getGeographics', (req, res) => {
 
 app.get('/getWeather', (req, res) => {
   console.log('GET weather');
-  const url = `${weatherbitRootForecast}lat=${planData.Lat}&lon=${planData.Long}${weatherApiKey}`;
+  const url = `${weatherbitRootForecast}lat=${planData.lat}&lon=${planData.long}${weatherApiKey}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
         .then(response =>{
+          console.log(response)
           const data = response.data[planData.duration]
           console.log(data)
 
-          planData.MaxTemp = data.max_temp;
-          planData.MinTemp = data.min_temp;
-          planData.WeatherDesc = data.weather.description
+          planData.maxTemp = data.max_temp;
+          planData.minTemp = data.min_temp;
+          planData.weatherDesc = data.weather.description
+          planData.weatherIcon = data.weather.icon
 
-          res.send({MAX_temperature : planData.MaxTemp, MIN_temperature : planData.MinTemp, weather : planData.WeatherDesc});
+          res.send({MAX_temperature : planData.maxTemp, MIN_temperature : planData.minTemp, weather : planData.weatherDesc, weatherIcon: data.weather.icon});
     })
     .catch(error => {
       res.send(JSON.stringify({error: "An error occured"}));
@@ -138,6 +140,25 @@ app.get('/getCountries', (req, res) => {
         .then(response =>{
 
           console.log(response)
+
+          res.send();
+
+    })
+    .catch(error => {
+      res.send(JSON.stringify({error: "An error has occured"}));
+    })
+})
+
+app.get('/getTravelAdvice', (req, res) => {
+  console.log('GET Travel Advice Info')
+  const url = `${travelAdviceRoot}${planData.code}`;
+  console.log(url);
+    fetch(url)
+      .then(response => response.json())
+        .then(response =>{
+
+          console.log(response)
+          res.send();
 
     })
     .catch(error => {
