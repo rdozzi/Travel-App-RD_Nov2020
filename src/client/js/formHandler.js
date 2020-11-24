@@ -33,6 +33,7 @@ async function handleSubmit(event) {
       UpdateWeatherResult(weatherData);
 
       const countryData = await getCountry(`http://localhost:5000/getCountries`);
+      console.log(countryData);
       UpdateCountryResult(countryData);
 
       const imgData = await getImage(`http://localhost:5000/getImage`);
@@ -86,7 +87,6 @@ const getWeather = async (url) => {
   });
   try{
     const data = await res.json();
-    console.log(`weather response: ${data}`)
     return data;
 
   }catch{
@@ -104,7 +104,22 @@ const getCountry = async (url) =>{
     });
     try{
       const data = await res.json();
-      console.log(`Country Data: ${data}`);
+      return data;
+    }catch{
+      ResultError(`Country: ${res.statusText}`);
+    }
+}
+
+const getTravelAdvice = async (url) =>{
+  const res = await fetch(url , {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    });
+    try{
+      const data = await res.json();
       return data;
     }catch{
       ResultError(`Country: ${res.statusText}`);
@@ -121,27 +136,9 @@ const getImage = async (url) =>{
     });
     try{
       const data = await res.json();
-      console.log(`Image Data: ${data}`);
       return data;
     }catch{
       ResultError(`IMAGE: ${res.statusText}`);
-    }
-}
-
-const getTravelAdvice = async (url) =>{
-  const res = await fetch(url , {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        }
-    });
-    try{
-      const data = await res.json();
-      console.log(`Travel Data: ${data}`);
-      return data;
-    }catch{
-      ResultError(`Country: ${res.statusText}`);
     }
 }
 
@@ -224,20 +221,6 @@ function UpdateCountryResult(countryData){
 
 }
 
-function UpdateImageResult(imageData){
-  let resultFragment = document.createDocumentFragment();
-
-  let result_Image = new Image();
-
-  result_Image.classList.add('result-image');
-  result_Image.src = imageData.source1;
-
-  resultFragment.append(result_Image);
-
-  resultID.append(resultFragment);
-
-}
-
 function UpdateTravelAdvice(travelAdviceData){
   let resultFragment = document.createDocumentFragment();
 
@@ -252,6 +235,20 @@ function UpdateTravelAdvice(travelAdviceData){
   resultFragment.append(result_Advice);
 
   resultID.append(resultFragment);
+}
+
+function UpdateImageResult(imageData){
+  let resultFragment = document.createDocumentFragment();
+
+  let result_Image = new Image();
+
+  result_Image.classList.add('result-image');
+  result_Image.src = imageData.source1;
+
+  resultFragment.append(result_Image);
+
+  resultID.append(resultFragment);
+
 }
 
 function toProper(lowercaseWord){

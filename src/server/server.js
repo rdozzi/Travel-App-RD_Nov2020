@@ -161,7 +161,7 @@ app.get('/getImage', (req, res) => {
           const result1 = response.hits[0].webformatURL;
           const result2 = response.hits[1].webformatURL;
           const result3 = response.hits[2].webformatURL;
-          console.log(`Image result: ${result1} <br/>${result2} <br/>${result3}`)
+          console.log(`Image result: ${result1}\n${result2}\n${result3}`)
           planData.imgSource = result1;
           res.send({source1 : result1});
 
