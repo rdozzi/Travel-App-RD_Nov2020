@@ -70,7 +70,7 @@ app.post('/createTrip', (req, res) => {
 
 app.get('/getGeonames', (req, res) => {
   console.log('GET geonamesData')
-  const url = `${geoNamesRoot}${planData.location}${geoNamesRowsFuzzyAndUsername}`;
+  const url = `${geoNamesRoot}${addPlus(planData.location)}${geoNamesRowsFuzzyAndUsername}`;
   console.log(url);
     fetch(url)
       .then(res => res.json())
@@ -148,7 +148,7 @@ app.get('/getCountries', (req, res) => {
 
 app.get('/getImage', (req, res) => {
   console.log('GET Image')
-  const url = `${pixabayRoot}${planData.name}+${planData.adminName}+${planData.countryName}${pixabayParams}`;
+  const url = `${pixabayRoot}${addPlus(planData.name)}+${addPlus(planData.adminName)}+${addPlus(planData.countryName)}${pixabayParams}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
@@ -209,3 +209,8 @@ app.get('/getPlan', (req, res) => {
     console.log(planData);
     res.send(planData);
 })
+
+const addPlus = (stringWithSpace) => {
+  let stringWithPlus = stringWithSpace.replace(' ', '+');
+  return stringWithPlus;
+}
