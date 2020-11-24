@@ -39,6 +39,7 @@ async function handleSubmit(event) {
       UpdateImageResult(imgData);
 
       const travelAdviceData = await getTravelAdvice(`http://localhost:5000/getTravelAdvice`)
+      UpdateTravelAdvice(travelAdviceData)
 
   }else{
     ResultError('Please Enter a valid duration <br/> Must start today or in the future and end moving forward');
@@ -235,6 +236,22 @@ function UpdateImageResult(imageData){
 
   resultID.append(resultFragment);
 
+}
+
+function UpdateTravelAdvice(travelAdviceData){
+  let resultFragment = document.createDocumentFragment();
+
+  let result_Advice = document.createElement('p');
+
+  result_Advice.classList.add('result-Advice');
+
+  const adviceHTML = `${travelAdviceData.advisoryMessage}`
+
+  result_Advice.innerHTML = adviceHTML;
+
+  resultFragment.append(result_Advice);
+
+  resultID.append(resultFragment);
 }
 
 function toProper(lowercaseWord){

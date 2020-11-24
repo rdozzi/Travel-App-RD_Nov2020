@@ -162,8 +162,8 @@ app.get('/getImage', (req, res) => {
           const result2 = response.hits[1].webformatURL;
           const result3 = response.hits[2].webformatURL;
           console.log(`Image result: ${result1} <br/>${result2} <br/>${result3}`)
-          planData.imgSource = result;
-          res.send({source1 : result1, source2: result2, source3: result3});
+          planData.imgSource = result1;
+          res.send({source1 : result1});
 
     })
     .catch(error => {
@@ -178,9 +178,10 @@ app.get('/getTravelAdvice', (req, res) => {
     fetch(url)
       .then(response => response.json())
         .then(response =>{
-
-          console.log(response)
-          res.send();
+          let travelAdvisoryMessage = response.data[planData.code].advisory.message // Was not able to call API without this
+          console.log(travelAdvisoryMessage);
+          // planData['advisoryMessage'] = response.data.planData['code'].advisory.message;
+          res.send({advisoryMessage: planData.advisoryMessage});
 
     })
     .catch(error => {
