@@ -23,28 +23,28 @@ async function handleSubmit(event) {
         Duration: daysInTravel 
       });
 
-      UpdateDate(startDate, endDate, daysInTravel);
+      updateDate(startDate, endDate, daysInTravel);
 
-      const geonamesData = await callServer(`http://localhost:5000/getGeonames`);
+      await callServer(`http://localhost:5000/getGeonames`);
       // UpdateGeonamesResults(geonamesData);
 
-      const weatherData = await callServer(`http://localhost:5000/getWeather`);  
+      await callServer(`http://localhost:5000/getWeather`);  
       // UpdateWeatherResult(weatherData);
 
-      const countryData = await callServer(`http://localhost:5000/getCountries`);
+      await callServer(`http://localhost:5000/getCountries`);
       // UpdateCountryResult(countryData);
 
-      const travelAdviceData = await callServer(`http://localhost:5000/getTravelAdvice`)
+      await callServer(`http://localhost:5000/getTravelAdvice`)
       // UpdateTravelAdvice(travelAdviceData)
 
-      const imgData = await callServer(`http://localhost:5000/getImage`);
+      await callServer(`http://localhost:5000/getImage`);
       // UpdateImageResult(imgData);
 
       const getPlanData = await callServer(`http://localhost:5000/getPlan`);
       console.log(getPlanData);
 
   }else{
-    ResultError('Please Enter a valid duration <br/> Must start today or in the future and end moving forward');
+    alert('Please enter a valid trip duration!! Entries must start today or in the future and end at least one day after');
   }
 
 }
@@ -80,116 +80,9 @@ const callServer = async(url) => {
       }
 }
 
-const getGeo = async(url) => {
-    const res = await fetch(url, {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        }
-      });
-        try{
-          const data = await res.json();
-          return data;
-  
-        }catch{
-          ResultError(`GEO: ${res.statusText}`);
-        }
-}
+// UI Functions
 
-const getWeather = async (url) => {
-  const res = await fetch(url ,{
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-          'Content-Type': 'application/json:charset=utf-8'
-      }
-  });
-  try{
-    const data = await res.json();
-    return data;
-
-  }catch{
-    ResultError(`WEATHER: ${res.statusText}`);
-  }
-}
-
-const getCountry = async (url) =>{
-  const res = await fetch(url , {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        }
-    });
-    try{
-      const data = await res.json();
-      return data;
-    }catch{
-      ResultError(`Country: ${res.statusText}`);
-    }
-}
-
-const getTravelAdvice = async (url) =>{
-  const res = await fetch(url , {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        }
-    });
-    try{
-      const data = await res.json();
-      return data;
-    }catch{
-      ResultError(`Country: ${res.statusText}`);
-    }
-}
-
-const getImage = async (url) =>{
-  const res = await fetch(url , {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        }
-    });
-    try{
-      const data = await res.json();
-      return data;
-    }catch{
-      ResultError(`IMAGE: ${res.statusText}`);
-    }
-}
-
-const getPlanCall = async (url) =>{
-  const res = await fetch(url , {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        }
-    });
-    try{
-      const data = await res.json();
-      return data;
-    }catch{
-      ResultError(`Plan: ${res.statusText}`);
-    }
-}
-
-function ResultError(msg){
-  if(msg !== 'OK')
-  {
-    const el_error = document.createElement('p');
-
-    el_error.classList.add('result-error');
-    el_error.innerHTML = msg;
-    resultID.append(el_error);
-  }
-}
-
-function UpdateDate(begin, end, duration){
+function updateDate(begin, end, duration){
   let resultFragment = document.createDocumentFragment();
 
   let result_Header = document.createElement('h2');
