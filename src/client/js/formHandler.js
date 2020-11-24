@@ -27,20 +27,22 @@ async function handleSubmit(event) {
 
       const geonamesData = await getGeo(`http://localhost:5000/getGeonames`);
       console.log(geonamesData);
-      UpdateGeonamesResults(geonamesData);
+      // UpdateGeonamesResults(geonamesData);
 
       const weatherData = await getWeather(`http://localhost:5000/getWeather`);  
-      UpdateWeatherResult(weatherData);
+      // UpdateWeatherResult(weatherData);
 
       const countryData = await getCountry(`http://localhost:5000/getCountries`);
-      console.log(countryData);
-      UpdateCountryResult(countryData);
+      // UpdateCountryResult(countryData);
 
       const imgData = await getImage(`http://localhost:5000/getImage`);
-      UpdateImageResult(imgData);
+      // UpdateImageResult(imgData);
 
       const travelAdviceData = await getTravelAdvice(`http://localhost:5000/getTravelAdvice`)
-      UpdateTravelAdvice(travelAdviceData)
+      // UpdateTravelAdvice(travelAdviceData)
+
+      const getPlanData = await getPlanCall(`http://localhost:5000/getPlan`);
+      console.log(getPlanData);
 
   }else{
     ResultError('Please Enter a valid duration <br/> Must start today or in the future and end moving forward');
@@ -139,6 +141,22 @@ const getImage = async (url) =>{
       return data;
     }catch{
       ResultError(`IMAGE: ${res.statusText}`);
+    }
+}
+
+const getPlanCall = async (url) =>{
+  const res = await fetch(url , {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    });
+    try{
+      const data = await res.json();
+      return data;
+    }catch{
+      ResultError(`Plan: ${res.statusText}`);
     }
 }
 

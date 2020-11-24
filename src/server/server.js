@@ -83,8 +83,9 @@ app.get('/getGeonames', (req, res) => {
           planData['adminName'] = response.geonames[0].adminName1;
           planData['countryName'] = response.geonames[0].countryName;
           planData['code'] = response.geonames[0].countryCode;
-          console.log(planData);
-          res.send(planData);
+          // console.log('planData Geonames')
+          // console.log(planData);
+          res.send(true);
     })
     .catch(error => {
       res.send(JSON.stringify({error: error}));
@@ -98,7 +99,6 @@ app.get('/getWeather', (req, res) => {
     fetch(url)
       .then(response => response.json())
         .then(response =>{
-          // console.log(response)
           const data = response.data[0]
           console.log(data)
 
@@ -109,8 +109,11 @@ app.get('/getWeather', (req, res) => {
           planData.weatherDesc = data.weather.description
           planData.weatherIcon = data.weather.icon
 
-          res.send({MAX_temperature : planData.maxTemp, MIN_temperature : planData.minTemp, relativeHumidity: planData.humidity,  precipitation: planData.precipProb, 
-            weather : planData.weatherDesc, weatherIcon: data.weather.icon});
+          // res.send({MAX_temperature : planData.maxTemp, MIN_temperature : planData.minTemp, relativeHumidity: planData.humidity,  precipitation: planData.precipProb, 
+            // weather : planData.weatherDesc, weatherIcon: data.weather.icon});
+          // console.log('planData Weather')
+          // console.log(planData)
+          res.send(true)
     })
     .catch(error => {
       res.send(JSON.stringify({error: "An error occured"}));
@@ -141,9 +144,9 @@ app.get('/getCountries', (req, res) => {
           }else {
             planData['languages'] = response.languages[0].name
           }
-
-          console.log(planData);
-          res.send(planData);
+          // console.log('planData Countries')
+          // console.log(planData);
+          res.send(true);
     })
     .catch(error => {
       res.send(JSON.stringify({error: "An error has occured"}));
@@ -162,8 +165,12 @@ app.get('/getImage', (req, res) => {
           const result2 = response.hits[1].webformatURL;
           const result3 = response.hits[2].webformatURL;
           console.log(`Image result: ${result1}\n${result2}\n${result3}`)
-          planData.imgSource = result1;
-          res.send({source1 : result1});
+          planData.img1 = result1;
+          planData.img2 = result2;
+          planData.img3 = result3;
+          // console.log('planData Images')
+          // console.log(planData);
+          res.send(true);
 
     })
     .catch(error => {
@@ -180,9 +187,10 @@ app.get('/getTravelAdvice', (req, res) => {
         .then(response =>{
           let travelAdvisoryMessage = response.data[planData.code].advisory.message // Was not able to call API without this
           console.log(travelAdvisoryMessage);
-          // planData['advisoryMessage'] = response.data.planData['code'].advisory.message;
-          res.send({advisoryMessage: planData.advisoryMessage});
-
+          planData.advise = travelAdvisoryMessage;
+          // console.log('planData Advice')
+          // console.log(planData);
+          res.send(true);
     })
     .catch(error => {
       res.send(JSON.stringify({error: "An error has occured"}));
@@ -190,5 +198,6 @@ app.get('/getTravelAdvice', (req, res) => {
 })
 
 app.get('/getPlan', (req, res) => {
+    console.log(planData);
     res.send(planData);
 })
