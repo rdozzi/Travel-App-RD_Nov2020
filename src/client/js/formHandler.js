@@ -25,23 +25,22 @@ async function handleSubmit(event) {
 
       UpdateDate(startDate, endDate, daysInTravel);
 
-      const geonamesData = await getGeo(`http://localhost:5000/getGeonames`);
-      console.log(geonamesData);
+      const geonamesData = await callServer(`http://localhost:5000/getGeonames`);
       // UpdateGeonamesResults(geonamesData);
 
-      const weatherData = await getWeather(`http://localhost:5000/getWeather`);  
+      const weatherData = await callServer(`http://localhost:5000/getWeather`);  
       // UpdateWeatherResult(weatherData);
 
-      const countryData = await getCountry(`http://localhost:5000/getCountries`);
+      const countryData = await callServer(`http://localhost:5000/getCountries`);
       // UpdateCountryResult(countryData);
 
-      const imgData = await getImage(`http://localhost:5000/getImage`);
-      // UpdateImageResult(imgData);
-
-      const travelAdviceData = await getTravelAdvice(`http://localhost:5000/getTravelAdvice`)
+      const travelAdviceData = await callServer(`http://localhost:5000/getTravelAdvice`)
       // UpdateTravelAdvice(travelAdviceData)
 
-      const getPlanData = await getPlanCall(`http://localhost:5000/getPlan`);
+      const imgData = await callServer(`http://localhost:5000/getImage`);
+      // UpdateImageResult(imgData);
+
+      const getPlanData = await callServer(`http://localhost:5000/getPlan`);
       console.log(getPlanData);
 
   }else{
@@ -60,6 +59,25 @@ async function postTrip(url, tripData){
       },
       body: JSON.stringify(tripData)
     });
+}
+
+const callServer = async(url) => {
+  const asyncParams = {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+    }
+  };
+
+    const res = await fetch(url, asyncParams);
+      try{
+        const data = await res.json();
+        return data;
+      } 
+      catch {
+        console.log(`Error: ${res.statusText}`)
+      }
 }
 
 const getGeo = async(url) => {

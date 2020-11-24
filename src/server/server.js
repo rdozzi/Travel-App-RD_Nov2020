@@ -83,8 +83,6 @@ app.get('/getGeonames', (req, res) => {
           planData['adminName'] = response.geonames[0].adminName1;
           planData['countryName'] = response.geonames[0].countryName;
           planData['code'] = response.geonames[0].countryCode;
-          // console.log('planData Geonames')
-          // console.log(planData);
           res.send(true);
     })
     .catch(error => {
@@ -109,10 +107,6 @@ app.get('/getWeather', (req, res) => {
           planData.weatherDesc = data.weather.description
           planData.weatherIcon = data.weather.icon
 
-          // res.send({MAX_temperature : planData.maxTemp, MIN_temperature : planData.minTemp, relativeHumidity: planData.humidity,  precipitation: planData.precipProb, 
-            // weather : planData.weatherDesc, weatherIcon: data.weather.icon});
-          // console.log('planData Weather')
-          // console.log(planData)
           res.send(true)
     })
     .catch(error => {
@@ -144,8 +138,7 @@ app.get('/getCountries', (req, res) => {
           }else {
             planData['languages'] = response.languages[0].name
           }
-          // console.log('planData Countries')
-          // console.log(planData);
+
           res.send(true);
     })
     .catch(error => {
@@ -168,8 +161,7 @@ app.get('/getImage', (req, res) => {
           planData.img1 = result1;
           planData.img2 = result2;
           planData.img3 = result3;
-          // console.log('planData Images')
-          // console.log(planData);
+
           res.send(true);
 
     })
@@ -188,8 +180,7 @@ app.get('/getTravelAdvice', (req, res) => {
           let travelAdvisoryMessage = response.data[planData.code].advisory.message // Was not able to call API without this
           console.log(travelAdvisoryMessage);
           planData.advise = travelAdvisoryMessage;
-          // console.log('planData Advice')
-          // console.log(planData);
+
           res.send(true);
     })
     .catch(error => {
