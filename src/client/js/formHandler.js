@@ -5,8 +5,8 @@ async function handleSubmit(event) {
     console.log("Begin Submission");
     // check what text was put into the form field
     let location = document.getElementById('destination').value;
-    let start = document.getElementById('date-Departure').value;
-    let end = document.getElementById('date-Return').value;
+    let start = document.getElementById('date-departure').value;
+    let end = document.getElementById('date-return').value;
 
     const startDate = new Date(start);
     const endDate = new Date(end);
