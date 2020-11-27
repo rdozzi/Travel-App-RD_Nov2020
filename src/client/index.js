@@ -64,8 +64,8 @@ import './weather-icons/t04d.png'
 import './weather-icons/t04n.png'
 import './weather-icons/t05d.png'
 import './weather-icons/t05n.png'
-import './weather-icons/u01d.png'
-import './weather-icons/u01n.png'
+import './weather-icons/u00d.png'
+import './weather-icons/u00n.png'
 
 export {
     handleSubmit,
