@@ -211,6 +211,7 @@ app.get('/getPlan', (req, res) => {
 })
 
 const addPlus = (stringWithSpace) => {
-  let stringWithPlus = stringWithSpace.replace(' ', '+');
+  let regex = new RegExp(' ', 'g')
+  let stringWithPlus = stringWithSpace.replace(regex, '+');
   return stringWithPlus;
 }
