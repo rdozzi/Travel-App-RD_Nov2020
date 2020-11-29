@@ -21,10 +21,13 @@
 
         <main>
             <section onsubmit="return Client.handleSubmit(event)">
-              <h3>Create A Plan</h3>
+                <div class="planner-title">
+                    <h3>Discover Great Places</h3>
+                    <h3>Create A Plan Below</h3>
+                </div>
               <form id="plan-create" class="form-plan">
                 <label for="location">Where would you like to go?:</label>
-                <input id="destination" name="location" type="text" required>
+                <input id="destination" name="location" type="text" placeholder="e.g. London" required>
 
                 <label for="departure">Date to depart:</label>
                 <input id="date-departure" name="departure" type="date" required>
@@ -90,7 +93,7 @@
         </main>
     
     <footer>
-                <p></p>
-            </footer>
+        <div></div>
+    </footer>
             
         </body>
