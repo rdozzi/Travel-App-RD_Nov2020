@@ -1,4 +1,4 @@
-const resultID = document.getElementById('result-data');
+// const resultID = document.getElementById('result-data');
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -23,7 +23,7 @@ async function handleSubmit(event) {
         Duration: daysInTravel 
       });
 
-      updateDate(startDate, endDate, daysInTravel);
+      // updateDate(startDate, endDate, daysInTravel);
 
       await callServer(`http://localhost:5000/getGeonames`);
       // UpdateGeonamesResults(geonamesData);
@@ -82,108 +82,108 @@ const callServer = async(url) => {
 
 // UI Functions
 
-function updateDate(begin, end, duration){
-  let resultFragment = document.createDocumentFragment();
+// function updateDate(begin, end, duration){
+//   let resultFragment = document.createDocumentFragment();
 
-  let result_Header = document.createElement('h2');
-  let result_Date = document.createElement('p');
+//   let result_Header = document.createElement('h2');
+//   let result_Date = document.createElement('p');
 
-  result_Header.classList.add('result-header');
-  result_Date.classList.add('result-date');
+//   result_Header.classList.add('result-header');
+//   result_Date.classList.add('result-date');
 
-  const dateHTML = `Start: ${begin} <br/> End: ${end} <br/> Travel time: ${duration}`;
-  result_Date.innerHTML = dateHTML;
+//   const dateHTML = `Start: ${begin} <br/> End: ${end} <br/> Travel time: ${duration}`;
+//   result_Date.innerHTML = dateHTML;
 
-  resultFragment.append(result_Header);
-  resultFragment.lastChild.append(result_Date);
+//   resultFragment.append(result_Header);
+//   resultFragment.lastChild.append(result_Date);
 
-  resultID.append(resultFragment);
-}
+//   resultID.append(resultFragment);
+// }
 
-function UpdateGeonamesResults(geonamesData){
-  let resultFragment = document.createDocumentFragment();
+// function UpdateGeonamesResults(geonamesData){
+//   let resultFragment = document.createDocumentFragment();
 
-  let result_Geonames = document.createElement('p');
+//   let result_Geonames = document.createElement('p');
 
-  result_Geonames.classList.add('result-Geonames');
+//   result_Geonames.classList.add('result-Geonames');
 
-  let properName = toProper(geonamesData.location);
+//   let properName = toProper(geonamesData.location);
 
-  const geonamesHTML = `${properName}, ${geonamesData.adminName} ${geonamesData.countryName}`;
+//   const geonamesHTML = `${properName}, ${geonamesData.adminName} ${geonamesData.countryName}`;
 
-  result_Geonames.innerHTML = geonamesHTML;
+//   result_Geonames.innerHTML = geonamesHTML;
 
-  resultFragment.append(result_Geonames);
+//   resultFragment.append(result_Geonames);
 
-  resultID.append(resultFragment);
-}
+//   resultID.append(resultFragment);
+// }
 
-function UpdateWeatherResult(weatherData){
-  let resultFragment = document.createDocumentFragment();
+// function UpdateWeatherResult(weatherData){
+//   let resultFragment = document.createDocumentFragment();
 
-  let result_Weather = document.createElement('p');
+//   let result_Weather = document.createElement('p');
 
-  result_Weather.classList.add('result-weather');
+//   result_Weather.classList.add('result-weather');
 
-  const weatherHTML = `Temperature: (HIGH) ${weatherData.MAX_temperature}, 
-  (LOW) ${weatherData.MIN_temperature} 
-  <br/> ${weatherData.relativeHumidity}
-  <br/> ${weatherData.precipitation}
-  <br/> Description: ${weatherData.weather} 
-  <br/> ${weatherData.weatherIcon}`;
+//   const weatherHTML = `Temperature: (HIGH) ${weatherData.MAX_temperature}, 
+//   (LOW) ${weatherData.MIN_temperature} 
+//   <br/> ${weatherData.relativeHumidity}
+//   <br/> ${weatherData.precipitation}
+//   <br/> Description: ${weatherData.weather} 
+//   <br/> ${weatherData.weatherIcon}`;
 
-  result_Weather.innerHTML = weatherHTML;
+//   result_Weather.innerHTML = weatherHTML;
 
-  resultFragment.append(result_Weather);
+//   resultFragment.append(result_Weather);
 
-  resultID.append(resultFragment);
-}
+//   resultID.append(resultFragment);
+// }
 
-function UpdateCountryResult(countryData){
-  let resultFragment = document.createDocumentFragment();
+// function UpdateCountryResult(countryData){
+//   let resultFragment = document.createDocumentFragment();
 
-  let result_Country = document.createElement('p');
+//   let result_Country = document.createElement('p');
 
-  result_Country.classList.add('result-country');
+//   result_Country.classList.add('result-country');
   
-  const countryHTML = ``;
+//   const countryHTML = ``;
 
-}
+// }
 
-function UpdateTravelAdvice(travelAdviceData){
-  let resultFragment = document.createDocumentFragment();
+// function UpdateTravelAdvice(travelAdviceData){
+//   let resultFragment = document.createDocumentFragment();
 
-  let result_Advice = document.createElement('p');
+//   let result_Advice = document.createElement('p');
 
-  result_Advice.classList.add('result-Advice');
+//   result_Advice.classList.add('result-Advice');
 
-  const adviceHTML = `${travelAdviceData.advisoryMessage}`
+//   const adviceHTML = `${travelAdviceData.advisoryMessage}`
 
-  result_Advice.innerHTML = adviceHTML;
+//   result_Advice.innerHTML = adviceHTML;
 
-  resultFragment.append(result_Advice);
+//   resultFragment.append(result_Advice);
 
-  resultID.append(resultFragment);
-}
+//   resultID.append(resultFragment);
+// }
 
-function UpdateImageResult(imageData){
-  let resultFragment = document.createDocumentFragment();
+// function UpdateImageResult(imageData){
+//   let resultFragment = document.createDocumentFragment();
 
-  let result_Image = new Image();
+//   let result_Image = new Image();
 
-  result_Image.classList.add('result-image');
-  result_Image.src = imageData.source1;
+//   result_Image.classList.add('result-image');
+//   result_Image.src = imageData.source1;
 
-  resultFragment.append(result_Image);
+//   resultFragment.append(result_Image);
 
-  resultID.append(resultFragment);
+//   resultID.append(resultFragment);
 
-}
+// }
 
-function toProper(lowercaseWord){
-  let wordString = lowercaseWord.charAt(0).toUpperCase() + lowercaseWord.slice(1);
-  return wordString;
-}
+// function toProper(lowercaseWord){
+//   let wordString = lowercaseWord.charAt(0).toUpperCase() + lowercaseWord.slice(1);
+//   return wordString;
+// }
 
 export { handleSubmit }
 
