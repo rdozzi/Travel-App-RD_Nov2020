@@ -8,11 +8,18 @@ async function handleSubmit(event) {
     let start = document.getElementById('date-departure').value;
     let end = document.getElementById('date-return').value;
 
+    const today = new Date();
     const startDate = new Date(start);
     const endDate = new Date(end);
 
-    const TravelTime = endDate.getTime() - startDate.getTime();
-    const daysInTravel = TravelTime / (1000 * 60 * 60 *24);
+    const travelTime = endDate.getTime() - startDate.getTime();
+    // const daysInTravel = travelTime / (1000 * 60 * 60 * 24);
+    const daysInTravel = timeUnitConversion(travelTime);
+    console.log(daysInTravel);
+
+    const timeUntilTrip = startDate.getTime() - today;
+    const daysUntilTrip = timeUnitConversion(timeUntilTrip);
+    console.log(daysUntilTrip);
 
     if(daysInTravel > 0)
     {
@@ -42,12 +49,15 @@ async function handleSubmit(event) {
 
       const getPlanData = await callServer(`http://localhost:5000/getPlan`);
       console.log(getPlanData);
+      updateUI(getPlanData)
 
   }else{
     alert('Please enter a valid trip duration!! Entries must start today or in the future and end at least one day after');
   }
 
 }
+
+
 
 async function postTrip(url, tripData){
     const response = await fetch(url, {
@@ -81,6 +91,9 @@ const callServer = async(url) => {
 }
 
 // UI Functions
+const updateUI = async (results) => {
+
+}
 
 // function updateDate(begin, end, duration){
 //   let resultFragment = document.createDocumentFragment();
@@ -184,6 +197,12 @@ const callServer = async(url) => {
 //   let wordString = lowercaseWord.charAt(0).toUpperCase() + lowercaseWord.slice(1);
 //   return wordString;
 // }
+
+// function to convert perform unit conversion on getTime() outputs
+const timeUnitConversion = (timeInMilliseconds) => {
+  let timeInDays = timeInMilliseconds/(1000 * 60 * 60 * 24);
+  return Math.ceil(timeInDays);
+}
 
 export { handleSubmit }
 
