@@ -14,7 +14,15 @@ const lowTemp = document.getElementById('low-temp');
 const humidity = document.getElementById('humidity');
 const precipProb = document.getElementById('precipitation');
 const weatherDesc = document.getElementById('weather-desc');
-const weatherIcon = document.getElementById('weather-icon')
+const weatherIcon = document.getElementById('weather-icon');
+
+const countryCapital = document.getElementById('capital');
+const demonym = document.getElementById('demonym');
+const languages = document.getElementById('languages');
+const currencyName = document.getElementById('curr-name');
+const currencyCode = document.getElementById('curr-code');
+const currencySymbol = document.getElementById('curr-symbol');
+const flag = document.getElementById('flag-result');
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -114,7 +122,11 @@ const updateUI = async (results) => {
 
   //Update City Info Section
   cityResult.innerHTML = results.name;
-  provinceResult.innerHTML = results.adminName;
+  if(results.name === results.adminName){
+    provinceResult.innerHTML = 'N/A'
+  } else {
+    provinceResult.innerHTML = results.adminName;
+  }
   countryResult.innerHTML = results.countryName;
 
   //Update Weather Info Section
@@ -124,6 +136,15 @@ const updateUI = async (results) => {
   precipProb.innerHTML = results.precipProb;
   weatherDesc.innerHTML = results.weatherDesc;
   // weatherIcon.innerHTML = 
+
+  //Update Country Info Section
+  countryCapital.innerHTML = results.capital;
+  demonym.innerHTML = results.demonym;
+  languages.innerHTML = languageFormatter(results.languages);
+  currencyName.innerHTML = results.currencyInfo.name;
+  currencyCode.innerHTML = results.currencyInfo.code;
+  currencySymbol.innerHTML = results.currencyInfo.symbol;
+  // flag.src = results.flag;
 }
 
 // function updateDate(begin, end, duration){
@@ -238,6 +259,19 @@ const timeUnitConversion = (timeInMilliseconds) => {
 const splitDate = (dateAPI) => {
   let newDate = dateAPI.split('T')
   return newDate[0];
+}
+
+const languageFormatter = (languageArray) => {
+  if(typeof(languageArray) === 'string'){
+    return languageArray;
+  } else {
+    let langString = ''
+    for (let lang of languageArray){
+      langString = langString.concat(lang).concat(', ');
+    }
+    langString = langString.slice(0,langString.length - 2);
+    return langString;
+    }
 }
 
 export { handleSubmit, timeUnitConversion, splitDate }
