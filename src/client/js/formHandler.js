@@ -1,4 +1,9 @@
+// Define variables for Document object collectors
 // const resultID = document.getElementById('result-data');
+const departureDate = document.getElementById('departure');
+const returnDate = document.getElementById('return');
+const daysOut = document.getElementById('days-out');
+const tripDuration = document.getElementById('trip-duration');
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -57,8 +62,6 @@ async function handleSubmit(event) {
 
 }
 
-
-
 async function postTrip(url, tripData){
     const response = await fetch(url, {
       method: 'POST',
@@ -92,7 +95,10 @@ const callServer = async(url) => {
 
 // UI Functions
 const updateUI = async (results) => {
-
+  departureDate.innerHTML = splitDate(results.startDate);
+  returnDate.innerHTML = splitDate(results.endDate);
+  daysOut.innerHTML = results.daysToTrip;
+  tripDuration.innerHTML = results.duration
 }
 
 // function updateDate(begin, end, duration){
@@ -204,5 +210,10 @@ const timeUnitConversion = (timeInMilliseconds) => {
   return Math.ceil(timeInDays);
 }
 
-export { handleSubmit, timeUnitConversion }
+const splitDate = (dateAPI) => {
+  let newDate = dateAPI.split('T')
+  return newDate[0];
+}
+
+export { handleSubmit, timeUnitConversion, splitDate }
 
