@@ -26,7 +26,10 @@ const flag = document.getElementById('flag-result');
 
 const advisory = document.getElementById('advisory-result');
 const advisoryMessage = document.getElementById('further-info');
-const advisoryLink = document.getElementById('hyperlink')
+const advisoryLink = document.getElementById('hyperlink');
+
+const printButton = document.getElementById('print');
+const deleteButton = document.getElementById('delete');
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -157,6 +160,12 @@ const updateUI = async (results) => {
   advisoryLink.innerHTML = 'https://www.travel-advisory.info/all-countries'
 
 }
+
+// Print Button Function
+printButton.addEventListener('click', (e) => {
+  window.print();
+  location.reload();
+})
 
 const timeUnitConversion = (timeInMilliseconds) => {
   let timeInDays = timeInMilliseconds/(1000 * 60 * 60 * 24);
