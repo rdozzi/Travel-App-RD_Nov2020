@@ -13,7 +13,6 @@ async function handleSubmit(event) {
     const endDate = new Date(end);
 
     const travelTime = endDate.getTime() - startDate.getTime();
-    // const daysInTravel = travelTime / (1000 * 60 * 60 * 24);
     const daysInTravel = timeUnitConversion(travelTime);
     console.log(daysInTravel);
 
@@ -27,7 +26,8 @@ async function handleSubmit(event) {
         Location: location, 
         Start : startDate, 
         End: endDate, 
-        Duration: daysInTravel 
+        Duration: daysInTravel,
+        DaysToGo: daysUntilTrip
       });
 
       // updateDate(startDate, endDate, daysInTravel);
@@ -204,5 +204,5 @@ const timeUnitConversion = (timeInMilliseconds) => {
   return Math.ceil(timeInDays);
 }
 
-export { handleSubmit }
+export { handleSubmit, timeUnitConversion }
 

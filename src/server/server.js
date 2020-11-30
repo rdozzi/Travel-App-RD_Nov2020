@@ -59,7 +59,8 @@ app.post('/createTrip', (req, res) => {
       location: newData.Location,
       startDate: newData.Start,
       endDate: newData.End,
-      duration: newData.Duration
+      duration: newData.Duration,
+      daysToTrip: newData.DaysToGo
     }
     
     planData = newEntry;
