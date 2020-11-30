@@ -5,6 +5,17 @@ const returnDate = document.getElementById('return');
 const daysOut = document.getElementById('days-out');
 const tripDuration = document.getElementById('trip-duration');
 
+const cityResult = document.getElementById('city');
+const provinceResult = document.getElementById('province');
+const countryResult = document.getElementById('country');
+
+const highTemp = document.getElementById('high-temp');
+const lowTemp = document.getElementById('low-temp');
+const humidity = document.getElementById('humidity');
+const precipProb = document.getElementById('precipitation');
+const weatherDesc = document.getElementById('weather-desc');
+const weatherIcon = document.getElementById('weather-icon')
+
 async function handleSubmit(event) {
     event.preventDefault();
     console.log("Begin Submission");
@@ -95,10 +106,24 @@ const callServer = async(url) => {
 
 // UI Functions
 const updateUI = async (results) => {
+  // Update Trip Date Info Section
   departureDate.innerHTML = splitDate(results.startDate);
   returnDate.innerHTML = splitDate(results.endDate);
   daysOut.innerHTML = results.daysToTrip;
   tripDuration.innerHTML = results.duration
+
+  //Update City Info Section
+  cityResult.innerHTML = results.name;
+  provinceResult.innerHTML = results.adminName;
+  countryResult.innerHTML = results.countryName;
+
+  //Update Weather Info Section
+  highTemp.innerHTML = results.maxTemp;
+  lowTemp.innerHTML = results.minTemp;
+  humidity.innerHTML = results.humidity;
+  precipProb.innerHTML = results.precipProb;
+  weatherDesc.innerHTML = results.weatherDesc;
+  // weatherIcon.innerHTML = 
 }
 
 // function updateDate(begin, end, duration){
