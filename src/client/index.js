@@ -67,6 +67,23 @@ import './weather-icons/t05n.png'
 import './weather-icons/u00d.png'
 import './weather-icons/u00n.png'
 
+// import API-Logos
+import './api-logos/geonames.png'
+import './api-logos/pixabay.png'
+import './api-logos/RESTCountries.png'
+import './api-logos/travel-advisory.png'
+import './api-logos/udacity.png'
+import './api-logos/weatherbit.png'
+
+// import media
+import './media/background.jpg'
+import './media/facebook.png'
+import './media/instagram.png'
+import './media/Linkedin.png'
+import './media/snoopy_peanuts.png'
+import './media/twitter.png'
+
+
 export {
     handleSubmit,
     dateString
@@ -86,17 +103,17 @@ export {
     let minYear = d.getFullYear();
 
     d.setDate(d.getDate() + 15);
-    console.log(d);
+    // console.log(d);
 
     let maxDay = d.getDate();
     let maxMonth = d.getMonth() + 1;
     let maxYear = d.getFullYear();
-    console.log(d.getYear());
-    console.log(maxYear);
+    // console.log(d.getYear());
+    // console.log(maxYear);
 
     let minDate = dateString(minDay, minMonth, minYear);
     let maxDate = dateString(maxDay, maxMonth, maxYear);
-    console.log(minDate, maxDate);
+    // console.log(minDate, maxDate);
 
     dateDeparture.setAttribute('min', minDate);
     dateDeparture.setAttribute('max', maxDate);
