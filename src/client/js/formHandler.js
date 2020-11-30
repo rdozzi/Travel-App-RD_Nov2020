@@ -28,6 +28,8 @@ const advisory = document.getElementById('advisory-result');
 const advisoryMessage = document.getElementById('further-info');
 const advisoryLink = document.getElementById('hyperlink');
 
+const entryForm = document.getElementById('plan-create');
+const resultInfo = document.getElementById('result-info');
 const printButton = document.getElementById('print');
 const deleteButton = document.getElementById('delete');
 
@@ -165,6 +167,13 @@ const updateUI = async (results) => {
 printButton.addEventListener('click', (e) => {
   window.print();
   location.reload();
+})
+
+deleteButton.addEventListener('click', (e) => {
+  entryForm.reset();
+  // resultInfo.classList.add("invisible");
+  location.reload();
+
 })
 
 const timeUnitConversion = (timeInMilliseconds) => {
