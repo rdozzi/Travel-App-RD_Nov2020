@@ -181,5 +181,5 @@ const languageFormatter = (languageArray) => {
     }
 }
 
-export { handleSubmit, timeUnitConversion, splitDate }
+export { handleSubmit, timeUnitConversion, splitDate, languageFormatter }
 
