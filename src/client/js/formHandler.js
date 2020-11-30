@@ -24,6 +24,10 @@ const currencyCode = document.getElementById('curr-code');
 const currencySymbol = document.getElementById('curr-symbol');
 const flag = document.getElementById('flag-result');
 
+const advisory = document.getElementById('advisory-result');
+const advisoryMessage = document.getElementById('further-info');
+const advisoryLink = document.getElementById('hyperlink')
+
 async function handleSubmit(event) {
     event.preventDefault();
     console.log("Begin Submission");
@@ -145,6 +149,13 @@ const updateUI = async (results) => {
   currencyCode.innerHTML = results.currencyInfo.code;
   currencySymbol.innerHTML = results.currencyInfo.symbol;
   // flag.src = results.flag;
+
+  //Update Advisory Info Section
+  advisory.innerHTML = results.advise;
+  advisoryMessage.innerHTML = 'For further information click on the link here:'
+  advisoryLink.href = 'https://www.travel-advisory.info/all-countries'
+  advisoryLink.innerHTML = 'https://www.travel-advisory.info/all-countries'
+
 }
 
 // function updateDate(begin, end, duration){
