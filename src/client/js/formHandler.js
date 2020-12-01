@@ -14,7 +14,7 @@ const lowTemp = document.getElementById('low-temp');
 const humidity = document.getElementById('humidity');
 const precipProb = document.getElementById('precipitation');
 const weatherDesc = document.getElementById('weather-desc');
-const weatherIcon = document.getElementById('weather-icon');
+const weatherIconRef = document.getElementById('weather-icon');
 
 const countryCapital = document.getElementById('capital');
 const demonym = document.getElementById('demonym');
@@ -32,6 +32,10 @@ const entryForm = document.getElementById('plan-create');
 const resultInfo = document.getElementById('result-info');
 const printButton = document.getElementById('print');
 const deleteButton = document.getElementById('delete');
+
+const image1 = document.getElementById('pixabay1');
+const image2 = document.getElementById('pixabay2');
+const image3 = document.getElementById('pixabay3');
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -144,7 +148,10 @@ const updateUI = async (results) => {
   humidity.innerHTML = results.humidity;
   precipProb.innerHTML = results.precipProb;
   weatherDesc.innerHTML = results.weatherDesc;
-  // weatherIcon.innerHTML = 
+
+  // let weatherIconFile = results.weatherIcon;
+
+  // weatherIconRef.setAttribute('src', `../weather_icons/${weatherIconFile}.png`);
 
   //Update Country Info Section
   countryCapital.innerHTML = results.capital;
@@ -160,6 +167,11 @@ const updateUI = async (results) => {
   advisoryMessage.innerHTML = 'For further information click on the link here:'
   advisoryLink.href = 'https://www.travel-advisory.info/all-countries'
   advisoryLink.innerHTML = 'https://www.travel-advisory.info/all-countries'
+
+  //Update Images
+  image1.setAttribute('src', results.img1);
+  image2.setAttribute('src', results.img2);
+  image3.setAttribute('src', results.img3);
 
 }
 
