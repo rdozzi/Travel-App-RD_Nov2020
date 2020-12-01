@@ -21,11 +21,13 @@ module.exports = {
         rules: [
             {
                 test: /\.(png|svg|jpe?g|gif)$/i,
+                exclude: ['/node_modules/', require.resolve('./src/client/index.js')], //Refer to SO page that discusses file-loader/HTML WP plugin conflicts
                 use: {
                   loader: 'file-loader',
                   options: {
                       name: '[name].[ext]',
-                      outputPath: 'imgs' 
+                      outputPath: 'imgs',
+                      publicPath: 'imgs'
                   }
                 }
             },
