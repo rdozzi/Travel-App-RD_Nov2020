@@ -83,6 +83,12 @@ import './media/Linkedin.png'
 import './media/snoopy_peanuts.png'
 import './media/twitter.png'
 
+// import sass files
+import './styles/footer.scss'
+import './styles/header.scss'
+import './styles/main.scss'
+import './styles/resets.scss'
+import './styles/section.scss'
 
 export {
     handleSubmit,
