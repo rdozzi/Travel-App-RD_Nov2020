@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -19,20 +20,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: '/\.js$/',
-                exclude: /node_modules/,
-                loader: "babel-loader"
-            },
-            {
-                test: /\.html$/,
-                use: ["html-loader"],
-            },
-            {
-                test: /\.scss$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-            },
-            {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpe?g|gif)$/i,
                 use: {
                   loader: 'file-loader',
                   options: {
@@ -40,6 +28,28 @@ module.exports = {
                       outputPath: 'imgs' 
                   }
                 }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+            },
+            {
+                test: '/\.js$/',
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/env']
+                    }
+                }
+            },
+            {
+                test: /\.html$/,
+                use: ["html-loader"],
             }
         ]
     },
@@ -58,5 +68,6 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
+        new WorkboxPlugin.GenerateSW()
     ]
 }
