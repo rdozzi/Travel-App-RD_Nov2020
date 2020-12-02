@@ -149,9 +149,9 @@ const updateUI = async (results) => {
   precipProb.innerHTML = results.precipProb;
   weatherDesc.innerHTML = results.weatherDesc;
 
-  // let weatherIconFile = results.weatherIcon;
-
-  // weatherIconRef.setAttribute('src', `../weather_icons/${weatherIconFile}.png`);
+  let weatherIconCall = `../weather_icons/${results.weatherIcon}.png`;
+  
+  weatherIconRef.setAttribute('src', weatherIconCall);
 
   //Update Country Info Section
   countryCapital.innerHTML = results.capital;
@@ -160,7 +160,7 @@ const updateUI = async (results) => {
   currencyName.innerHTML = results.currencyInfo.name;
   currencyCode.innerHTML = results.currencyInfo.code;
   currencySymbol.innerHTML = results.currencyInfo.symbol;
-  // flag.src = results.flag;
+  flag.src = results.flag;
 
   //Update Advisory Info Section
   advisory.innerHTML = results.advise;
