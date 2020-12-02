@@ -149,9 +149,9 @@ const updateUI = async (results) => {
   precipProb.innerHTML = results.precipProb;
   weatherDesc.innerHTML = results.weatherDesc;
 
-  let weatherIconCall = `../weather_icons/${results.weatherIcon}.png`;
+  // let weatherIconCall = `../weather_icons/${results.weatherIcon}.png`;
   
-  weatherIconRef.setAttribute('src', weatherIconCall);
+  // weatherIconRef.setAttribute('src', weatherIconCall);
 
   //Update Country Info Section
   countryCapital.innerHTML = results.capital;
