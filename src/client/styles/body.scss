@@ -1,3 +1,5 @@
-// body {
-//     background: url('./src/media/background.jpg')
-// }
+body {
+    background-image: url('../media/background.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
