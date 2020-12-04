@@ -149,7 +149,7 @@ app.get('/getCountries', (req, res) => {
 
 app.get('/getImage', (req, res) => {
   console.log('GET Image')
-  const url = `${pixabayRoot}${addPlus(planData.name)}+${addPlus(planData.adminName)}+${addPlus(planData.countryName)}${pixabayParams}`;
+  const url = `${pixabayRoot}${addPlus(planData.name)}+${addPlus(planData.countryName)}${pixabayParams}`; //+${addPlus(planData.adminName)}
   console.log(url);
     fetch(url)
       .then(response => response.json())
