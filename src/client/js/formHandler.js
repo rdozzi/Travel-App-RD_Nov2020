@@ -172,13 +172,16 @@ const updateUI = async (results) => {
   advisoryLink.innerHTML = 'https://www.travel-advisory.info/all-countries'
 
   //Update Images
-  // image1.setAttribute('src', results.cityIMG1);
-  // image2.setAttribute('src', results.cityIMG2);
-  // image3.setAttribute('src', results.cityIMG3);
-  image1.setAttribute('src', results.cityArray[0]);
-  image2.setAttribute('src', results.cityArray[1]);
-  image3.setAttribute('src', results.cityArray[2]);
-
+  if(results.cityArray === undefined){
+    image1.setAttribute('src', results.countryArray[0]);
+    image2.setAttribute('src', results.countryArray[1]);
+    image3.setAttribute('src', results.countryArray[2]);
+  } else {
+    image1.setAttribute('src', results.cityArray[0]);
+    image2.setAttribute('src', results.cityArray[1]);
+    image3.setAttribute('src', results.cityArray[2]);
+  }
+  
 }
 
 // Print Button Function
