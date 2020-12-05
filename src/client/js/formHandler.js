@@ -30,8 +30,8 @@ const advisoryLink = document.getElementById('hyperlink');
 
 const entryForm = document.getElementById('plan-create');
 const resultInfo = document.getElementById('result-info');
-const printButton = document.getElementById('print');
-const deleteButton = document.getElementById('delete');
+// const printButton = document.getElementById('print');
+// const deleteButton = document.getElementById('delete');
 
 const image1 = document.getElementById('pixabay1');
 const image2 = document.getElementById('pixabay2');
@@ -185,17 +185,27 @@ const updateUI = async (results) => {
 }
 
 // Print Button Function
-printButton.addEventListener('click', (e) => {
+const printButton = () => {
   window.print();
   location.reload();
-})
+}
 
-deleteButton.addEventListener('click', (e) => {
+// printButton.addEventListener('click', (e) => {
+//   window.print();
+//   location.reload();
+// })
+
+// deleteButton.addEventListener('click', (e) => {
+//   entryForm.reset();
+//   // resultInfo.classList.add("invisible");
+//   location.reload();
+
+// })
+
+const deleteButton = () => {
   entryForm.reset();
-  // resultInfo.classList.add("invisible");
   location.reload();
-
-})
+}
 
 const timeUnitConversion = (timeInMilliseconds) => {
   let timeInDays = timeInMilliseconds/(1000 * 60 * 60 * 24);
@@ -220,5 +230,5 @@ const languageFormatter = (languageArray) => {
     }
 }
 
-export { handleSubmit, timeUnitConversion, splitDate, languageFormatter }
+export { handleSubmit, timeUnitConversion, splitDate, languageFormatter, printButton, deleteButton }
 
