@@ -80,7 +80,7 @@ app.get('/getGeonames', (req, res) => {
           console.log(response);
           planData['long'] = response.geonames[0].lng;
           planData['lat'] = response.geonames[0].lat;
-          planData['name'] =response.geonames[0].toponymName;
+          planData['name'] =response.geonames[0].name; //toponymName
           planData['adminName'] = response.geonames[0].adminName1;
           planData['countryName'] = response.geonames[0].countryName;
           planData['code'] = response.geonames[0].countryCode;
@@ -154,38 +154,20 @@ app.get('/getImage', (req, res) => {
     fetch(url)
       .then(response => response.json())
         .then(response =>{
-          if(response.total === 0){
-            const url = `${pixabayRoot}${planData.countryName}${pixabayParams}`;
-            console.log(url);
-              fetch(url)
-                .then(response => response.json())
-                  .then(response => {
-                    const result1 = response.hits[0].webformatURL;
-                    const result2 = response.hits[1].webformatURL;
-                    const result3 = response.hits[2].webformatURL;
-                    console.log(`Image result: ${result1}\n${result2}\n${result3}`)
-                    planData.img1 = result1;
-                    planData.img2 = result2;
-                    planData.img3 = result3;      
-                    res.send(true);
-                  })
-                  .catch(error => {
-                    res.send(JSON.stringify({error: "An error has occured"}));
-                })
-          } else {
-              const result1 = response.hits[0].webformatURL;
-              const result2 = response.hits[1].webformatURL;
-              const result3 = response.hits[2].webformatURL;
-              console.log(`Image result: ${result1}\n${result2}\n${result3}`)
-              planData.img1 = result1;
-              planData.img2 = result2;
-              planData.img3 = result3;
-              res.send(true);
-            }
-    })
-    .catch(error => {
-      res.send(JSON.stringify({error: "An error has occured"}));
-  })
+          console.log(response.totalHits);
+          console.log(response.hits[0]);
+          const result1 = response.hits[0].webformatURL;
+          const result2 = response.hits[1].webformatURL;
+          const result3 = response.hits[2].webformatURL;
+          console.log(`Image result: ${result1}\n${result2}\n${result3}`)
+          planData.img1 = result1;
+          planData.img2 = result2;
+          planData.img3 = result3;
+          res.send(true);
+        })
+      .catch(error => {
+        res.send(JSON.stringify({error: "An error has occured"}));
+      })
 })
 
 app.get('/getTravelAdvice', (req, res) => {
@@ -216,3 +198,23 @@ const addPlus = (stringWithSpace) => {
   let stringWithPlus = stringWithSpace.replace(regex, '+');
   return stringWithPlus;
 }
+
+// if(response.total === 0){
+//   const url = `${pixabayRoot}${planData.countryName}${pixabayParams}`;
+//   console.log(url);
+//     fetch(url)
+//       .then(response => response.json())
+//         .then(response => {
+//           const result1 = response.hits[0].webformatURL;
+//           const result2 = response.hits[1].webformatURL;
+//           const result3 = response.hits[2].webformatURL;
+//           console.log(`Image result: ${result1}\n${result2}\n${result3}`)
+//           planData.img1 = result1;
+//           planData.img2 = result2;
+//           planData.img3 = result3;      
+//           res.send(true);
+//         })
+//         .catch(error => {
+//           res.send(JSON.stringify({error: "An error has occured"}));
+//       })
+// }
