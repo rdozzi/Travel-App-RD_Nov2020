@@ -172,18 +172,24 @@ app.get('/getCityImage', (req, res) => {
     fetch(url)
       .then(response => response.json())
         .then(response =>{
+          const cityArray = [];
           const result1 = response.hits[0].webformatURL;
           const result2 = response.hits[1].webformatURL;
           const result3 = response.hits[2].webformatURL;
-          console.log(`Image result: ${result1}\n${result2}\n${result3}`)
+          // console.log(`Image result: ${result1}\n${result2}\n${result3}`);
+
+          cityArray.push(result1);
+          cityArray.push(result2);
+          cityArray.push(result3);
+          planData.cityArray = cityArray
           planData.cityIMG1 = result1;
           planData.cityIMG2 = result2;
           planData.cityIMG3 = result3;
           res.send(true);
         })
-      .catch(error => {
-        res.send(JSON.stringify({error: "An error has occured"}));
-      })
+        .catch(error => {
+          res.send(JSON.stringify({error: "An error has occured"}));
+        })
 })
 
 app.get('/getPlan', (req, res) => {
