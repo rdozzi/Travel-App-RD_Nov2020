@@ -18,6 +18,8 @@ app.use(cors());
 
 app.use(express.static('dist'));
 
+module.exports = server;
+
 // Server instance and respective callback function
 const port = 5000;
 const server = app.listen(port, () => {
