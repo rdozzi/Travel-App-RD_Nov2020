@@ -165,22 +165,20 @@ app.get('/getTravelAdvice', (req, res) => {
     })
 })
 
-app.get('/getImage', (req, res) => {
+app.get('/getCityImage', (req, res) => {
   console.log('GET Image')
   const url = `${pixabayRoot}${addPlus(planData.name)}+${addPlus(planData.countryName)}${pixabayParams}`; //+${addPlus(planData.adminName)}
   console.log(url);
     fetch(url)
       .then(response => response.json())
         .then(response =>{
-          console.log(response.totalHits);
-          console.log(response.hits[0]);
           const result1 = response.hits[0].webformatURL;
           const result2 = response.hits[1].webformatURL;
           const result3 = response.hits[2].webformatURL;
           console.log(`Image result: ${result1}\n${result2}\n${result3}`)
-          planData.img1 = result1;
-          planData.img2 = result2;
-          planData.img3 = result3;
+          planData.cityIMG1 = result1;
+          planData.cityIMG2 = result2;
+          planData.cityIMG3 = result3;
           res.send(true);
         })
       .catch(error => {

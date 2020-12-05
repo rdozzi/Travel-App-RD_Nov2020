@@ -81,7 +81,7 @@ async function handleSubmit(event) {
       await callServer(`http://localhost:5000/getTravelAdvice`)
       // UpdateTravelAdvice(travelAdviceData)
 
-      await callServer(`http://localhost:5000/getImage`);
+      await callServer(`http://localhost:5000/getCityImage`);
       // UpdateImageResult(imgData);
 
       const getPlanData = await callServer(`http://localhost:5000/getPlan`);
@@ -169,9 +169,9 @@ const updateUI = async (results) => {
   advisoryLink.innerHTML = 'https://www.travel-advisory.info/all-countries'
 
   //Update Images
-  image1.setAttribute('src', results.img1);
-  image2.setAttribute('src', results.img2);
-  image3.setAttribute('src', results.img3);
+  image1.setAttribute('src', results.cityIMG1);
+  image2.setAttribute('src', results.cityIMG2);
+  image3.setAttribute('src', results.cityIMG3);
 
 }
 
