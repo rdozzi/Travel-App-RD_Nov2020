@@ -169,9 +169,12 @@ const updateUI = async (results) => {
   advisoryLink.innerHTML = 'https://www.travel-advisory.info/all-countries'
 
   //Update Images
-  image1.setAttribute('src', results.cityIMG1);
-  image2.setAttribute('src', results.cityIMG2);
-  image3.setAttribute('src', results.cityIMG3);
+  // image1.setAttribute('src', results.cityIMG1);
+  // image2.setAttribute('src', results.cityIMG2);
+  // image3.setAttribute('src', results.cityIMG3);
+  image1.setAttribute('src', results.cityArray[0]);
+  image2.setAttribute('src', results.cityArray[1]);
+  image3.setAttribute('src', results.cityArray[2]);
 
 }
 
