@@ -149,7 +149,7 @@ const updateUI = async (results) => {
   precipProb.innerHTML = results.precipProb;
   weatherDesc.innerHTML = results.weatherDesc;
 
-  let weatherIconCall = `../weather_icons/${results.weatherIcon}.png`;
+  let weatherIconCall = `/imgs/${results.weatherIcon}.png`;
   
   weatherIconRef.setAttribute('src', weatherIconCall);
 
