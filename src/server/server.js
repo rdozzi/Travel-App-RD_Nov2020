@@ -26,6 +26,8 @@ const server = app.listen(port, () => {
     console.log(`Running on localhost: ${port}`);
 });
 
+module.exports = server;
+
 // API Access Variables
 // Geonames API
 const geoNamesRoot = 'http://api.geonames.org/searchJSON?q='; // http://api.geonames.org/searchJSON?q= q=london&... Phrase cities require +
