@@ -147,6 +147,24 @@ app.get('/getCountries', (req, res) => {
     })
 })
 
+app.get('/getTravelAdvice', (req, res) => {
+  console.log('GET Travel Advice Info')
+  const url = `${travelAdviceRoot}${planData.code}`;
+  console.log(url);
+    fetch(url)
+      .then(response => response.json())
+        .then(response =>{
+          let travelAdvisoryMessage = response.data[planData.code].advisory.message // Was not able to call API without this
+          console.log(travelAdvisoryMessage);
+          planData.advise = travelAdvisoryMessage;
+
+          res.send(true);
+    })
+    .catch(error => {
+      res.send(JSON.stringify({error: "An error has occured"}));
+    })
+})
+
 app.get('/getImage', (req, res) => {
   console.log('GET Image')
   const url = `${pixabayRoot}${addPlus(planData.name)}+${addPlus(planData.countryName)}${pixabayParams}`; //+${addPlus(planData.adminName)}
@@ -168,24 +186,6 @@ app.get('/getImage', (req, res) => {
       .catch(error => {
         res.send(JSON.stringify({error: "An error has occured"}));
       })
-})
-
-app.get('/getTravelAdvice', (req, res) => {
-  console.log('GET Travel Advice Info')
-  const url = `${travelAdviceRoot}${planData.code}`;
-  console.log(url);
-    fetch(url)
-      .then(response => response.json())
-        .then(response =>{
-          let travelAdvisoryMessage = response.data[planData.code].advisory.message // Was not able to call API without this
-          console.log(travelAdvisoryMessage);
-          planData.advise = travelAdvisoryMessage;
-
-          res.send(true);
-    })
-    .catch(error => {
-      res.send(JSON.stringify({error: "An error has occured"}));
-    })
 })
 
 app.get('/getPlan', (req, res) => {
