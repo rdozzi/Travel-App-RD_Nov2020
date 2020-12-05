@@ -84,6 +84,9 @@ async function handleSubmit(event) {
       await callServer(`http://localhost:5000/getCityImage`);
       // UpdateImageResult(imgData);
 
+      await callServer(`http://localhost:5000/getCountryImage`);
+      // UpdateImageResult(imgData);
+
       const getPlanData = await callServer(`http://localhost:5000/getPlan`);
       console.log(getPlanData);
       updateUI(getPlanData)
