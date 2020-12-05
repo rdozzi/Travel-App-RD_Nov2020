@@ -182,9 +182,31 @@ app.get('/getCityImage', (req, res) => {
           cityArray.push(result2);
           cityArray.push(result3);
           planData.cityArray = cityArray
-          planData.cityIMG1 = result1;
-          planData.cityIMG2 = result2;
-          planData.cityIMG3 = result3;
+          // planData.cityIMG1 = result1;
+          // planData.cityIMG2 = result2;
+          // planData.cityIMG3 = result3;
+          res.send(true);
+        })
+        .catch(error => {
+          res.send(JSON.stringify({error: "An error has occured"}));
+        })
+})
+
+app.get('/getCountryImage', (req, res) => {
+  console.log('GET Image')
+  const url = `${pixabayRoot}${addPlus(planData.countryName)}${pixabayParams}`; //+${addPlus(planData.adminName)}
+  console.log(url);
+    fetch(url)
+      .then(response => response.json())
+        .then(response =>{
+          const countryArray = [];
+          const result1 = response.hits[0].webformatURL;
+          const result2 = response.hits[1].webformatURL;
+          const result3 = response.hits[2].webformatURL;
+          countryArray.push(result1);
+          countryArray.push(result2);
+          countryArray.push(result3);
+          planData.countryArray = countryArray
           res.send(true);
         })
         .catch(error => {
