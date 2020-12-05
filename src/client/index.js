@@ -1,5 +1,7 @@
 import {handleSubmit} from './js/formHandler';
 import {dateString} from './js/dateString';
+import {printButton} from './js/formHandler';
+import {deleteButton} from './js/formHandler';
 
 // import weather icons
 import './weather_icons/a01d.png'
@@ -91,9 +93,16 @@ import './styles/resets.scss'
 import './styles/section.scss'
 import './styles/body.scss'
 
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('print').addEventListener('click', printButton);
+    document.getElementById('delete').addEventListener('click', deleteButton);
+});
+
 export {
     handleSubmit,
-    dateString
+    dateString,
+    printButton,
+    deleteButton
 }
 
 // IIFE function used to restrict the departure dates a user can select starting 
