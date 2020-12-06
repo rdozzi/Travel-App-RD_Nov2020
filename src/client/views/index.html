@@ -22,20 +22,21 @@
         </header>
 
         <main>
-            <section onsubmit="return Client.handleSubmit(event)">
-                <div class="planner-title">
-                    <!-- <h3>Discover Great Places</h3> -->
+            <section class="planner" onsubmit="return Client.handleSubmit(event)">
+                <div id="planner-title">
                     <h3>Create A Plan Below</h3>
                 </div>
               <form id="plan-create" class="form-plan">
                 <label for="location">Where would you like to go?:</label>
                 <input id="destination" name="location" type="text" placeholder="e.g. London" required>
 
-                <label for="departure">Date to depart:</label>
-                <input id="date-departure" name="departure" type="date" required>
+                <div class="dates">
+                    <label for="departure">Date to depart:</label>
+                    <input id="date-departure" name="departure" type="date" required>
 
-                <label for="return">Date to return:</label>
-                <input id="date-return" name="return" type="date" required>
+                    <label for="return">Date to return:</label>
+                    <input id="date-return" name="return" type="date" required>
+                </div>
 
                 <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 <div id="quote">"We travel not to escape life but for life not to escape us" - Marina Richter</div>

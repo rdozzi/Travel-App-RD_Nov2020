@@ -3,3 +3,27 @@ body {
     background-repeat: round;
     background-size: 100%;
 }
+
+.planner {
+    background-color: FBFFF1;
+    border-radius: 25px;
+    display: inline-block;
+    width: 45%;
+    min-width: 45%;
+    margin-left: 25%;
+    
+}
+
+#planner-title{
+    text-align: center;
+}
+
+.form-plan{
+    display: grid;
+    grid-gap: 6px;
+    justify-content: center;
+}
+
+.dates{
+    
+}
