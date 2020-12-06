@@ -1,3 +1,35 @@
+$container-color: FBFFF1;
+$card-color: F1F4E1;
+$border-radius: 25px;
+
 .section-result {
-    background-color: FBFFF1;
+    display: grid;
+    grid-auto-flow: row;
+    background-color: $container-color;
+    border-radius: $border-radius;
+
 }
+
+.trip-info{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#date-info{
+    background-color: $card-color;
+    border-radius: $border-radius;
+}
+
+#destination-info{
+    background-color: $card-color;
+    border-radius: $border-radius;
+}
+
+#country-info{
+    background-color: $card-color;
+    border-radius: $border-radius;
+}
+
+// #flag-result{
+//     display: inline-flex;
+// }
