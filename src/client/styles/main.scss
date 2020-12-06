@@ -7,7 +7,7 @@ $border-radius: 25px;
     grid-auto-flow: row;
     background-color: $container-color;
     border-radius: $border-radius;
-
+    width: 100%;
 }
 
 .trip-info{
@@ -36,6 +36,10 @@ $border-radius: 25px;
     flex-wrap: row wrap;
     background-color: F0B4B4;
     border-radius: $border-radius;
+}
+
+#advisory-result {
+    max-width: fit-content;
 }
 
 #weather-info {
