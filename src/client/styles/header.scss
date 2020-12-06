@@ -1,5 +1,5 @@
 .header{
-    display: block;
+    display: flex;
     justify-content: space-between;
 }
 
@@ -31,7 +31,8 @@
     position: absolute;
     background-color: white;
     min-width: 160px;
-    z-index: 2;
+    z-index: 1;
+    right: 0;
 }
 
 .dropdown:hover .dropdown-content{
