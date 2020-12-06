@@ -223,8 +223,6 @@ const addPlus = (stringWithSpace) => {
   return stringWithPlus;
 }
 
-module.exports = server;
-
 // if(response.total === 0){
 //   const url = `${pixabayRoot}${planData.countryName}${pixabayParams}`;
 //   console.log(url);
