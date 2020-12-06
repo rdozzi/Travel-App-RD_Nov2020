@@ -18,15 +18,7 @@ app.use(cors());
 
 app.use(express.static('dist'));
 
-// Server instance and respective callback function
-const port = 5000;
-const server = app.listen(port, () => {
-    const ServerStart = new Date();
-    console.log('Server Running');
-    console.log(`Running on localhost: ${port}`);
-});
-
-module.exports = server;
+module.exports = app;
 
 // API Access Variables
 // Geonames API
@@ -78,15 +70,19 @@ app.get('/getGeonames', (req, res) => {
     fetch(url)
       .then(res => res.json())
         .then(response =>{
-          console.log('Data From GeoNames[0]')
-          console.log(response);
-          planData['long'] = response.geonames[0].lng;
-          planData['lat'] = response.geonames[0].lat;
-          planData['name'] =response.geonames[0].name; //toponymName
-          planData['adminName'] = response.geonames[0].adminName1;
-          planData['countryName'] = response.geonames[0].countryName;
-          planData['code'] = response.geonames[0].countryCode;
-          res.send(true);
+          try {
+            console.log('Data From GeoNames[0]')
+            console.log(response);
+            planData['long'] = response.geonames[0].lng;
+            planData['lat'] = response.geonames[0].lat;
+            planData['name'] =response.geonames[0].name; //toponymName
+            planData['adminName'] = response.geonames[0].adminName1;
+            planData['countryName'] = response.geonames[0].countryName;
+            planData['code'] = response.geonames[0].countryCode;
+            res.send(true);
+          } catch (e) {
+            console.log("Error: ", e);
+          }
     })
     .catch(error => {
       res.send(JSON.stringify({error: error}));
