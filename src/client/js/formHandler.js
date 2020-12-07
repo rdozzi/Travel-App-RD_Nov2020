@@ -54,7 +54,7 @@ async function handleSubmit(event) {
     console.log(daysInTravel);
 
     const timeUntilTrip = startDate.getTime() - today;
-    const daysUntilTrip = timeUnitConversion(timeUntilTrip);
+    const daysUntilTrip = timeUnitConversion(timeUntilTrip) + 1;
     console.log(daysUntilTrip);
 
     if(daysInTravel > 0)
@@ -67,25 +67,17 @@ async function handleSubmit(event) {
         DaysToGo: daysUntilTrip
       });
 
-      // updateDate(startDate, endDate, daysInTravel);
-
       await callServer(`http://localhost:5000/getGeonames`);
-      // UpdateGeonamesResults(geonamesData);
 
       await callServer(`http://localhost:5000/getWeather`);  
-      // UpdateWeatherResult(weatherData);
 
       await callServer(`http://localhost:5000/getCountries`);
-      // UpdateCountryResult(countryData);
 
       await callServer(`http://localhost:5000/getTravelAdvice`)
-      // UpdateTravelAdvice(travelAdviceData)
 
       await callServer(`http://localhost:5000/getCityImage`);
-      // UpdateImageResult(imgData);
 
       await callServer(`http://localhost:5000/getCountryImage`);
-      // UpdateImageResult(imgData);
 
       const getPlanData = await callServer(`http://localhost:5000/getPlan`);
       console.log(getPlanData);
@@ -189,18 +181,6 @@ const printButton = () => {
   window.print();
   location.reload();
 }
-
-// printButton.addEventListener('click', (e) => {
-//   window.print();
-//   location.reload();
-// })
-
-// deleteButton.addEventListener('click', (e) => {
-//   entryForm.reset();
-//   // resultInfo.classList.add("invisible");
-//   location.reload();
-
-// })
 
 const deleteButton = () => {
   entryForm.reset();
