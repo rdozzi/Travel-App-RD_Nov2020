@@ -45,11 +45,6 @@ a {
     border-radius: $border-radius;
 }
 
-#travel-advisory-info {
-    background-color: F0B4B4;
-    border-radius: $border-radius;
-}
-
 #country-info{
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
@@ -99,9 +94,19 @@ a {
     text-align: center;
 }
 
+.weather-and-advisory {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 #weather-icon {
     text-align: center;
     margin: auto;
+}
+
+#travel-advisory-info {
+    background-color: F0B4B4;
+    border-radius: $border-radius;
 }
 
 #pixabay-images {
@@ -119,4 +124,15 @@ a {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
+    padding-top: 40px;
+    padding-bottom: 20px;
 }
+
+#print:hover {
+    font-weight: bold;
+}
+
+#delete:hover {
+    font-weight: bold;
+}
+
