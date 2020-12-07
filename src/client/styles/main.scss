@@ -91,7 +91,13 @@ $border-radius: 25px;
 
 #pixabay-images {
     display: flex;
-    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#pixabay-images img {
+    width: 25%;
+    height: auto;
 }
 
 .print-delete{
