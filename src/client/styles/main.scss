@@ -7,6 +7,7 @@ $border-radius: 25px;
     grid-auto-flow: row;
     background-color: $container-color;
     border-radius: $border-radius;
+    overflow: auto;
     width: 100%;
 }
 
@@ -25,21 +26,61 @@ $border-radius: 25px;
     border-radius: $border-radius;
 }
 
-#country-info{
-    display: grid;
+#country-info {
     background-color: $card-color;
     border-radius: $border-radius;
 }
 
+#country-response{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+#capital-result {
+    grid-area: 1 / 1 / 5 / 2;
+}
+
+#demonym-result {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+#languages-result {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+#currency-result {
+    grid-area: 4 / 1 / 5 / 2;
+}
+
+#flag-result{
+    width: 30%;
+    height: auto;
+    grid-area: 1 / 2 / 5 / 3;
+}
+
 #travel-advisory-info {
-    display: flex;
-    flex-wrap: row wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     background-color: F0B4B4;
     border-radius: $border-radius;
 }
 
+#advisory-header {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
 #advisory-result {
-    max-width: fit-content;
+    max-width: 1 / 2 / 2 / 3;
+}
+
+#further-info {
+    grid-area: 2 / 1 / 3 / 2;;
+}
+
+#advisory-hyperlink {
+    grid-area: 2 / 2 / 3 / 3;
 }
 
 #weather-info {
