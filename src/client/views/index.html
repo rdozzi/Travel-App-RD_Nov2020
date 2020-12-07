@@ -70,20 +70,22 @@
                                 <img id="flag-result" alt="national_flag">
                             </div>
                         </div>
-                        <div id="travel-advisory-info">
-                            <h4 id="advisory-header">Travel Advisory:</h4>
-                            <p id="advisory-result"></p>
-                            <p id="further-info"></p>
-                            <a id="advisory-hyperlink" href=""></a>
-                        </div>
-                        <div id="weather-info">
-                            <h4>Weather Information:</h4>
-                            <img id="weather-icon" alt="weather_description_icon">
-                            <p id="weather-description">Weather Description: <span id="weather-desc"></span></p>
-                            <p id="high-temp-result">Temperature (High): <span id="high-temp"></span> &#8457</p>
-                            <p id="low-temp-result">Temperature (Low): <span id="low-temp"></span> &#8457</p>
-                            <p id="humidity-result">Humidity (%): <span id="humidity"></span> %</p>
-                            <p id="prob-precipitation">Probability of Precipitation (%): <span id="precipitation"></span> %</p>
+                        <div class="weather-and-advisory">
+                            <div id="weather-info">
+                                <h4>Weather Information:</h4>
+                                <img id="weather-icon" alt="weather_description_icon">
+                                <p id="weather-description">Weather Description: <span id="weather-desc"></span></p>
+                                <p id="high-temp-result">Temperature (High): <span id="high-temp"></span> &#8457</p>
+                                <p id="low-temp-result">Temperature (Low): <span id="low-temp"></span> &#8457</p>
+                                <p id="humidity-result">Humidity (%): <span id="humidity"></span> %</p>
+                                <p id="prob-precipitation">Probability of Precipitation (%): <span id="precipitation"></span> %</p>
+                            </div>
+                            <div id="travel-advisory-info">
+                                <h4 id="advisory-header">Travel Advisory:</h4>
+                                <p id="advisory-result"></p>
+                                <p id="further-info"></p>
+                                <a id="advisory-hyperlink" href=""></a>
+                            </div>
                         </div>
                         <div id="image-info">
                             <h4>Destination Images:</h4>
@@ -94,8 +96,8 @@
                             </div>
                         </div>
                         <div class="print-delete">
-                            <a id="print" href="#">Print</a>
-                            <a id="delete" href="#">Delete</a>
+                            <button id="print" href="#">Print</a>
+                            <button id="delete" href="#">Delete</a>
                         </div>
                     </div>
                 </section>
