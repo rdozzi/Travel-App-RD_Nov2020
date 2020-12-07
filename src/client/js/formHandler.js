@@ -26,7 +26,7 @@ const flag = document.getElementById('flag-result');
 
 const advisory = document.getElementById('advisory-result');
 const advisoryMessage = document.getElementById('further-info');
-const advisoryLink = document.getElementById('hyperlink');
+const advisoryLink = document.getElementById('advisory-hyperlink');
 
 const entryForm = document.getElementById('plan-create');
 const resultInfo = document.getElementById('result-info');
