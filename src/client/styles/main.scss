@@ -60,29 +60,9 @@ $border-radius: 25px;
 }
 
 #travel-advisory-info {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     background-color: F0B4B4;
     border-radius: $border-radius;
 }
-
-#advisory-header {
-    grid-area: 1 / 1 / 2 / 2;
-}
-
-#advisory-result {
-    max-width: 1 / 2 / 2 / 3;
-}
-
-#further-info {
-    grid-area: 2 / 1 / 3 / 2;;
-}
-
-#advisory-hyperlink {
-    grid-area: 2 / 2 / 3 / 3;
-}
-
 #weather-info {
     display: grid;
     background-color: BAE0F4;
