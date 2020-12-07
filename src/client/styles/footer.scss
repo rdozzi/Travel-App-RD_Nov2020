@@ -1,3 +1,10 @@
+footer {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(1, 1fr); 
+    grid-column-gap: 10px;
+}
+
 .social-media-container {
     display: flex;
     justify-content: center;
@@ -14,6 +21,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#author {
+    font-size: 16px;
+    font-weight: bolder;
 }
 
 #author-avatar {
