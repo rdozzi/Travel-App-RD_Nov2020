@@ -1,3 +1,5 @@
+// Grid Scheme Generated with assistance from https://cssgrid-generator.netlify.app
+
 $container-color: FBFFF1;
 $card-color: F1F4E1;
 $border-radius: 25px;
@@ -31,57 +33,86 @@ a {
 }
 
 .trip-info{
-    display: flex;
-    justify-content: space-evenly;
+    background-color: $card-color;
+    border-radius: $border-radius;
     padding-bottom: 20px;
-    padding-top: 20px;
-}
-
-#date-info{
-    background-color: $card-color;
-    border-radius: $border-radius;
-}
-
-#destination-info{
-    background-color: $card-color;
-    border-radius: $border-radius;
-}
-
-#country-info{
+    margin-bottom: 10px;
     display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    grid-template-rows: repeat(5, 1fr); 
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(1, 1fr); 
     grid-column-gap: 10px;
     grid-row-gap: 0px;
-    background-color: $card-color;
-    border-radius: $border-radius;
-    width: fit-content;
+    width: 95%;
 }
 
-#country-info h4 {
+// Date Information
+
+#date-info h4 {
     grid-area: 1 / 1 / 2 / 2;
 }
 
-#capital-result {
+#departure-date-result {
     grid-area: 2 / 1 / 3 / 2;
 }
 
-#demonym-result {
+#return-date-result {
     grid-area: 3 / 1 / 4 / 2;
 }
 
-#languages-result {
+#days-out-result {
     grid-area: 4 / 1 / 5 / 2;
 }
 
-#currency-result {
+#days-duration-result {
     grid-area: 5 / 1 / 6 / 2;
 }
+
+// City Information
+
+#destination-info h4 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+#city-result {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+#province-result {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+#country-result {
+    grid-area: 4 / 2 / 5 / 3;
+}
+
+// Country Info
+
+#country-info h4 {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+#capital-result {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+#demonym-result {
+    grid-area: 3 / 3 / 4 / 4;
+}
+
+#languages-result {
+    grid-area: 4 / 3 / 5 / 4;
+}
+
+#currency-result {
+    grid-area: 5 / 3 / 6 / 4;
+}
+
+// Flag Info
 
 #flag-result{
     width: 80%;
     height: auto;
-    grid-area: 1 / 2 / 6 / 3;
+    grid-area: 3 / 4 / 4 / 5;
     align-self: center;
 }
 
@@ -109,6 +140,7 @@ a {
 #travel-advisory-info {
     background-color: F0B4B4;
     border-radius: $border-radius;
+    height: fit-content;
 }
 
 #pixabay-images {
