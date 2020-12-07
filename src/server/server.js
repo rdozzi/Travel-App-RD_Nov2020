@@ -28,7 +28,7 @@ const geoNamesRowsFuzzyAndUsername = `&maxRows=1&fuzzy=0.6&username=${process.en
 // Weatherbit API
 const weatherbitRootForecast = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // Add &lat= & &lon=
 const weatherApiKey = `&key=${process.env.WEATHERBIT_API_KEY}`;
-const weatherParams = '&lang=en&units=I&days=1'; // Units in Fahrenheit
+const weatherParams = '&lang=en&units=I'; // Units in Fahrenheit
 
 // Rest Countries API
 const restCountriesRoot = 'https://restcountries.eu/rest/v2/alpha/'; //Add partial country name
@@ -71,7 +71,7 @@ app.get('/getGeonames', (req, res) => {
       .then(res => res.json())
         .then(response =>{
           try {
-            console.log('Data From GeoNames[0]')
+            console.log('Data From GeoNames')
             console.log(response);
             planData['long'] = response.geonames[0].lng;
             planData['lat'] = response.geonames[0].lat;
@@ -96,7 +96,8 @@ app.get('/getWeather', (req, res) => {
     fetch(url)
       .then(response => response.json())
         .then(response =>{
-          const data = response.data[0]
+          let forecastDay = planData.daysToTrip;
+          const data = response.data[forecastDay]
           console.log(data)
 
           planData.maxTemp = data.max_temp;
@@ -165,7 +166,7 @@ app.get('/getTravelAdvice', (req, res) => {
 
 app.get('/getCityImage', (req, res) => {
   console.log('GET Image')
-  const url = `${pixabayRoot}${addPlus(planData.name)}+${addPlus(planData.countryName)}${pixabayParams}`; //+${addPlus(planData.adminName)}
+  const url = `${pixabayRoot}${addPlus(planData.name)}+${addPlus(planData.countryName)}${pixabayParams}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
@@ -174,15 +175,11 @@ app.get('/getCityImage', (req, res) => {
           const result1 = response.hits[0].webformatURL;
           const result2 = response.hits[1].webformatURL;
           const result3 = response.hits[2].webformatURL;
-          // console.log(`Image result: ${result1}\n${result2}\n${result3}`);
 
           cityArray.push(result1);
           cityArray.push(result2);
           cityArray.push(result3);
           planData.cityArray = cityArray
-          // planData.cityIMG1 = result1;
-          // planData.cityIMG2 = result2;
-          // planData.cityIMG3 = result3;
           res.send(true);
         })
         .catch(error => {
@@ -192,7 +189,7 @@ app.get('/getCityImage', (req, res) => {
 
 app.get('/getCountryImage', (req, res) => {
   console.log('GET Image')
-  const url = `${pixabayRoot}${addPlus(planData.countryName)}${pixabayParams}`; //+${addPlus(planData.adminName)}
+  const url = `${pixabayRoot}${addPlus(planData.countryName)}${pixabayParams}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
@@ -222,23 +219,3 @@ const addPlus = (stringWithSpace) => {
   let stringWithPlus = stringWithSpace.replace(regex, '+');
   return stringWithPlus;
 }
-
-// if(response.total === 0){
-//   const url = `${pixabayRoot}${planData.countryName}${pixabayParams}`;
-//   console.log(url);
-//     fetch(url)
-//       .then(response => response.json())
-//         .then(response => {
-//           const result1 = response.hits[0].webformatURL;
-//           const result2 = response.hits[1].webformatURL;
-//           const result3 = response.hits[2].webformatURL;
-//           console.log(`Image result: ${result1}\n${result2}\n${result3}`)
-//           planData.img1 = result1;
-//           planData.img2 = result2;
-//           planData.img3 = result3;      
-//           res.send(true);
-//         })
-//         .catch(error => {
-//           res.send(JSON.stringify({error: "An error has occured"}));
-//       })
-// }
