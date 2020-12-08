@@ -40,6 +40,11 @@ const pixabayParams = '&image_type=photo&order=popular';
 // Corona-API API
 const travelAdviceRoot = 'https://www.travel-advisory.info/api?countrycode='; // Add two digit ISO country code
 
+//Sample get request taken from https://zellwk.com/blog/endpoint-testing/
+app.get('/test', async (req, res) => {
+  res.json({message: 'pass!'})
+})
+
 // Data Storage Object
 let planData = {};
 
