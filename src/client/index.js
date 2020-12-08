@@ -89,7 +89,6 @@ import './media/twitter.png'
 import './styles/footer.scss'
 import './styles/header.scss'
 import './styles/main.scss'
-import './styles/resets.scss'
 import './styles/section.scss'
 import './styles/body.scss'
 
