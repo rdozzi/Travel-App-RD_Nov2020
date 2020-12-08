@@ -1,0 +1,17 @@
+$inline-start: 5px;
+$inline-end: 5px;
+
+h4{
+    margin-inline-start: $inline-start;
+    margin-inline-end: $inline-end;
+}
+
+p {
+    margin-inline-start: $inline-start;
+    margin-inline-end: $inline-end;
+}
+
+a {
+    margin-inline-start: $inline-start;
+    margin-inline-end: $inline-end;
+}

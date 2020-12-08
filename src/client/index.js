@@ -90,7 +90,8 @@ import './styles/footer.scss'
 import './styles/header.scss'
 import './styles/main.scss'
 import './styles/sponsor_icons.scss'
-import './styles/body.scss'
+import './styles/body_&_planner.scss'
+import './styles/general_settings.scss'
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('print').addEventListener('click', printButton);
