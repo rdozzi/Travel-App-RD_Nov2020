@@ -92,6 +92,7 @@ import './styles/main.scss'
 import './styles/sponsor_icons.scss'
 import './styles/body_&_planner.scss'
 import './styles/general_settings.scss'
+import './styles/media_query.scss'
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('print').addEventListener('click', printButton);

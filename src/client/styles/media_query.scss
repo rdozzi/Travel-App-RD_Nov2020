@@ -1,0 +1,20 @@
+//Planner
+
+@media (max-width: 1000px){
+    .planner{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #date-departure{
+        width: 100%;
+    }
+
+    #date-return{
+        width: 100%;
+    }
+
+    #quote {
+        font-size: 92%;
+    }
+}
