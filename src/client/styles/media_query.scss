@@ -18,3 +18,60 @@
         font-size: 92%;
     }
 }
+
+@media (max-width: 800px){
+    #weather-info{
+        font-size: 92%;
+    }
+}
+
+@media (max-width: 580px){
+    .trip-info{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .weather-and-advisory{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #pixabay-images{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #pixabay1{
+        margin-bottom: 10px;
+    }
+
+    #pixabay2{
+        margin-bottom: 10px;
+    }
+
+    #travel-advisory-info{
+        margin-top: 20px
+    }
+    .print-delete{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #print{
+        margin: 10px;
+    }
+
+    .sponsor-icons{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    footer{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
