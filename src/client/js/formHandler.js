@@ -1,5 +1,5 @@
 // Define variables for Document object collectors
-// const resultID = document.getElementById('result-data');
+const resultID = document.getElementById('result-data');
 const departureDate = document.getElementById('departure');
 const returnDate = document.getElementById('return');
 const daysOut = document.getElementById('days-out');
@@ -30,8 +30,6 @@ const advisoryLink = document.getElementById('advisory-hyperlink');
 
 const entryForm = document.getElementById('plan-create');
 const resultInfo = document.getElementById('result-info');
-// const printButton = document.getElementById('print');
-// const deleteButton = document.getElementById('delete');
 
 const image1 = document.getElementById('pixabay1');
 const image2 = document.getElementById('pixabay2');
@@ -122,6 +120,9 @@ const callServer = async(url) => {
 
 // UI Functions
 const updateUI = async (results) => {
+  // Show the Travel Plan
+  resultID.style.display = 'block';
+
   // Update Trip Date Info Section
   departureDate.innerHTML = splitDate(results.startDate);
   returnDate.innerHTML = splitDate(results.endDate);
@@ -180,11 +181,13 @@ const updateUI = async (results) => {
 const printButton = () => {
   window.print();
   location.reload();
+  resultID.style.display = 'none';
 }
 
 const deleteButton = () => {
   entryForm.reset();
   location.reload();
+  resultID.style.display = 'none';
 }
 
 const timeUnitConversion = (timeInMilliseconds) => {

@@ -4,6 +4,10 @@ $card-color: F1F4E1;
 $border-radius: 25px;
 $border: solid;
 
+#result-data{
+    display: none;
+}
+
 .section-result {
     display: grid;
     grid-auto-flow: row;
