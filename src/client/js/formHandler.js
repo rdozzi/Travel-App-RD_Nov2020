@@ -87,6 +87,7 @@ async function handleSubmit(event) {
       await callServer(`http://localhost:5000/getCountryImage`);
 
       const getPlanData = await callServer(`http://localhost:5000/getPlan`);
+
       console.log(getPlanData);
       updateUI(getPlanData)
 
@@ -153,9 +154,7 @@ const updateUI = async (results) => {
   humidity.innerHTML = results.humidity;
   precipProb.innerHTML = results.precipProb;
   weatherDesc.innerHTML = results.weatherDesc;
-
   let weatherIconCall = `/imgs/${results.weatherIcon}.png`;
-  
   weatherIconRef.setAttribute('src', weatherIconCall);
 
   //Update Country Info Section
@@ -193,22 +192,27 @@ const printButton = () => {
   resultID.style.display = 'none';
 }
 
+// Delete Button Function
 const deleteButton = () => {
   entryForm.reset();
   location.reload();
   resultID.style.display = 'none';
 }
 
+// Converts time from miliseconds to days
 const timeUnitConversion = (timeInMilliseconds) => {
   let timeInDays = timeInMilliseconds/(1000 * 60 * 60 * 24);
   return Math.ceil(timeInDays);
 }
 
+// Splits the date (yyyy-mm-dd) from the time separated by "T"
 const splitDate = (dateAPI) => {
   let newDate = dateAPI.split('T')
   return newDate[0];
 }
 
+// This function accounts for when countries have more than 1 national language
+// The value returned is either an array (for > 1 language) or a string
 const languageFormatter = (languageArray) => {
   if(typeof(languageArray) === 'string'){
     return languageArray;
