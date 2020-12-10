@@ -1,21 +1,19 @@
 // Define variables for Document object collectors
+
+// Trip Planner - User Entry Point
 const resultID = document.getElementById('result-data');
 const departureDate = document.getElementById('departure');
 const returnDate = document.getElementById('return');
 const daysOut = document.getElementById('days-out');
 const tripDuration = document.getElementById('trip-duration');
+const entryForm = document.getElementById('plan-create');
 
+// Location Results Selectors
 const cityResult = document.getElementById('city');
 const provinceResult = document.getElementById('province');
 const countryResult = document.getElementById('country');
 
-const highTemp = document.getElementById('high-temp');
-const lowTemp = document.getElementById('low-temp');
-const humidity = document.getElementById('humidity');
-const precipProb = document.getElementById('precipitation');
-const weatherDesc = document.getElementById('weather-desc');
-const weatherIconRef = document.getElementById('weather-icon');
-
+// Country-specific information Selectors
 const countryCapital = document.getElementById('capital');
 const demonym = document.getElementById('demonym');
 const languages = document.getElementById('languages');
@@ -24,13 +22,20 @@ const currencyCode = document.getElementById('curr-code');
 const currencySymbol = document.getElementById('curr-symbol');
 const flag = document.getElementById('flag-result');
 
+// Weather Selectors
+const highTemp = document.getElementById('high-temp');
+const lowTemp = document.getElementById('low-temp');
+const humidity = document.getElementById('humidity');
+const precipProb = document.getElementById('precipitation');
+const weatherDesc = document.getElementById('weather-desc');
+const weatherIconRef = document.getElementById('weather-icon');
+
+// Travel Advisory Selectors
 const advisory = document.getElementById('advisory-result');
 const advisoryMessage = document.getElementById('further-info');
 const advisoryLink = document.getElementById('advisory-hyperlink');
 
-const entryForm = document.getElementById('plan-create');
-const resultInfo = document.getElementById('result-info');
-
+// Pixabay Image selectors
 const image1 = document.getElementById('pixabay1');
 const image2 = document.getElementById('pixabay2');
 const image3 = document.getElementById('pixabay3');
@@ -38,19 +43,23 @@ const image3 = document.getElementById('pixabay3');
 async function handleSubmit(event) {
     event.preventDefault();
     console.log("Begin Submission");
-    // check what text was put into the form field
+    
+    // Selectors defined to obtain user input data
     let location = document.getElementById('destination').value;
     let start = document.getElementById('date-departure').value;
     let end = document.getElementById('date-return').value;
 
+    // Variables to initiate date instances for calculations
     const today = new Date();
     const startDate = new Date(start);
     const endDate = new Date(end);
 
+    // Calculates duration
     const travelTime = endDate.getTime() - startDate.getTime();
     const daysInTravel = timeUnitConversion(travelTime);
     console.log(daysInTravel);
 
+    // Calculates days from today until trip
     const timeUntilTrip = startDate.getTime() - today;
     const daysUntilTrip = timeUnitConversion(timeUntilTrip) + 1;
     console.log(daysUntilTrip);
