@@ -107,8 +107,8 @@ export {
 }
 
 // IIFE function used to restrict the departure dates a user can select starting 
-// "today," or the day they use this app, to 15 days from today. This is to use
-// work around the weatherbit forecast limit
+// "today," or the day they use this app, to 15 days from today. This is to 
+// work around the weatherbit 16 day, starting from the respective "today," forecast limit
 
 (function () {
     const d = new Date();
