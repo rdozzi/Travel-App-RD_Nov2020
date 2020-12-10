@@ -79,5 +79,4 @@ Enter the **city**, **departure date**, and **return date** and then press the s
 
 Voila! Information about your destination will appear.
 
-
-
+After you are done reviewing your trip you can either print the trip by hitting "Print" or reset the planner by hitting "Delete."
