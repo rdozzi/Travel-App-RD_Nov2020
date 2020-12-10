@@ -1,3 +1,6 @@
+// This was set up to call be able to test the http endpoint
+
+// Call the exported function from server.js
 const app = require ('./server')
 
 // Server instance and respective callback function

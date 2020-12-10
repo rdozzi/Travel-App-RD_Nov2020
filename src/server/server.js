@@ -37,7 +37,7 @@ const restCountriesRoot = 'https://restcountries.eu/rest/v2/alpha/'; //Add parti
 const pixabayRoot = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=`; //Add city name with spaces as '+' 
 const pixabayParams = '&image_type=photo&order=popular';
 
-// Corona-API API
+// Travel Advisory (COVID-19) API
 const travelAdviceRoot = 'https://www.travel-advisory.info/api?countrycode='; // Add two digit ISO country code
 
 //Sample get request taken from https://zellwk.com/blog/endpoint-testing/
@@ -219,6 +219,7 @@ app.get('/getPlan', (req, res) => {
     res.send(planData);
 })
 
+// Helper function to convert all place names with spaces to include "+" between them
 const addPlus = (stringWithSpace) => {
   let regex = new RegExp(' ', 'g')
   let stringWithPlus = stringWithSpace.replace(regex, '+');
