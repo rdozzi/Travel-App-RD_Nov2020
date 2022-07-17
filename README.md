@@ -57,7 +57,7 @@ After performing the installation steps above, the following commands ("*scripts
 
 ```
 npm run build-dev (This builds the application for development purposes)
-npm run build-prod (This builds the application for production. The use will use this)
+npm run build-prod (This builds the application for production. The user will use this)
 npm start (This starts the node server AFTER the production application is built)
 npm test (This runs tests associated with the project)
 ```
